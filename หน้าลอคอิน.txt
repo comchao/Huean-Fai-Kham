@@ -1,0 +1,23 @@
+<?php
+            while ($row_news = mysqli_fetch_assoc($res_news)) {
+         ?>
+                <article class="uk-article">
+
+                        <h1 class="uk-article-title">
+                            <a href="#"><?php echo $row_news['news_topic']; ?></a>
+                        </h1>
+
+                        <p class="uk-article-meta">Written by Admin on <?php echo $row_news['news_date']; ?>. Posted in <a href="#"><?php echo $row_news['newstype_detail']; ?></a></p>
+
+                        <p>
+                            <a href="#"><img class="uk-thumbnail uk-thumbnail-large uk-align-center" src="./news_image/<?php echo $row_news['news_filename']; ?>" alt=""></a>
+                        </p>
+
+                        <?php echo $row_news['news_detail']; ?>
+
+                    </article>
+            <?php } ?>
+      </div>
+    </div>
+  </div>
+</div>

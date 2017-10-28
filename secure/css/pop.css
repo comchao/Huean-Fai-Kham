@@ -1,0 +1,3 @@
+.test h2 {opacity:0;}
+
+.test img:hover + h2 {opacity:1;}
