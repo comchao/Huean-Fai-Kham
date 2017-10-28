@@ -86,6 +86,42 @@ include '../testhd/hder.php';
                     <div class="panel-heading">รายการสั่งอาหารของท่าน</div>
 
                     <div class="panel-body">
+                        <?php
+
+                        $sql = "SELECT * FROM booktb INNER 
+JOIN tbtable ON booktb.id_table = tbtable.tb_id 
+JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id 
+JOIN tblogin ON booktb.login_id = tblogin.login_id 
+WHERE  booktb.login_id = $s_login_id  ";
+                        $res = mysqli_query($dbcon,$sql);
+                        $i=0 ;
+                        $tb_total = 0;
+
+                        while ($row = mysqli_fetch_assoc($res))
+                        {
+                        if ($s_login_id == $row['login_id']&$row['id_status']!='0') {
+                            ?>
+
+
+
+                        <center>
+
+                            คุณ: <?php echo $row['login_firstname']; ?>  <?php echo $row['login_lastname']; ?> <br>
+                            ที่อยู่: <?php echo $row['login_address']; ?> <br>
+                            อีเมล์: <?php echo $row['login_email']; ?>
+                            <?php echo $row['login_phone']; ?><br>
+                            วันที่จอง: <?php echo $row['tb_date']; ?>
+                            เวลา: <?php echo $row['tb_time']; ?>
+                            เวลาที่จอง: <?php echo $row['update_time']; ?><br>
+                            โต๊ะ: <?php echo $row['tb_numchair']; ?>    โซน: <?php echo $row['zone_name']; ?><br>
+                            <?php
+                            $i++;
+
+                        }}
+
+
+
+                        ?>
 
                         <table class="table table-hover">
                             <thead>
@@ -146,11 +182,27 @@ include '../testhd/hder.php';
 
 
                             ?>
-                            <td>ยอดรวมรวม:<?php echo  $tb_total;?> บาท</td>
+                            <td</td>
+
+
+
+
 
 
                             </tbody>
                         </table>
+                            <center>
+                                <div class="form-group" style="margin-left: 500px;">
+                                    <div class="">
+                                        <h4>ยอดรวมรวม:  <?php echo  $tb_total;?> บาท<br><br></h4>
+
+                                        <button type="submit" class="btn btn-primary" style="width: 130px">
+                                            ยกเลิกการสั่งอาหาร
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </center>
 
 
                     </div>
@@ -161,6 +213,11 @@ include '../testhd/hder.php';
         </div>
     </div>
     </form>
+
+
+
+
+    <br>   <br>   <br>
 
 
 
