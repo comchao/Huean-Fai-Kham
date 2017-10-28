@@ -1,4 +1,8 @@
 <?php
+
+include_once("config.php");
+require '../connectdb.php';
+
 if(!isset($_SESSION))
 {
     session_start();
@@ -10,26 +14,21 @@ $id_report  = $_POST['id_report'];
 $type  = $_POST['type'];
 
 
-include_once("config.php");
-require '../connectdb.php';
 
-//หน้าจองแต่โต๊ะ
-if($type== '0'){
 
-    header("Location: user_order_tabel.php?id_report=$id_report&login_id=$login_id");
+
+$sql = "UPDATE report SET 	type = $type 
+WHERE id_report = $id_report";
+
+$results = mysqli_query($dbcon,$sql);
+if ($results) {
+    header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id");
+}else {
+    echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
 }
-//หน้าจองแต่โต๊ะ+อาหาร
-if($type== '1'){
-
-    header("Location: user_order_tabel_food.php?id_report=$id_report&login_id=$login_id");
-}
+mysqli_close($dbcon);
 
 
-//อาหารกลับบ้าน
-if($type== '2'){
-
-    header("Location: user_order_home.php?id_report=$id_report&login_id=$login_id");
-}
 
 
 

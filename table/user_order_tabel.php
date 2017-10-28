@@ -140,16 +140,16 @@ include '../testhd/hder.php';
                                 <div class="">
                                     <h4>ยอดรวมรวม:  <?php echo  $tb_total;?> บาท<br><br></h4>
 
-                                    <form class="uk-form" action="order_set_page.php" method="post">
+                                    <form class="uk-form" action="order_set_update.php" method="post">
                                     <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
                                     <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
-                                    <input id="name" type="hidden" class="form-control" name="type" value="1"
+                                    <input id="name" type="hidden" class="form-control" name="type" value="0">
 
                                     <button type="submit" class="btn btn-danger" style="width: 130px">
-                                        ยกเลิกการสั่งอาหาร
+                                        ยกเลิกการสั่ง
                                     </button>
                                     </form>
-                                    <button type="submit" class="btn btn-group" style="width: 130px" onclick="myFunction()">
+                                    <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
                                         พิมพ์ใบเสร็จ
                                     </button>
 

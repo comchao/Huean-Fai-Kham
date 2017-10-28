@@ -5,6 +5,7 @@ include '../connectdb.php';
 $sql = "SELECT * FROM tblogin ";
 $res_login = mysqli_query($dbcon,$sql);
 $result_login = mysqli_query($dbcon,$sql);
+
 ?>
 
 <!DOCTYPE HTML>
@@ -178,6 +179,20 @@ include '../testhd/hder.php';
     </form>';
                                             }?>
                                             <?php if ($row["status"] == '1') {
+                                                echo'<form class="uk-form" action="" method="post">
+        <input id="name" type="hidden" class="form-control" name="login_id" value="'.$s_login_id.'"?>
+         <input id="name" type="hidden" class="form-control" name="id_report" value="'.$row["id_report"].'"?>
+         <input id="name" type="hidden" class="form-control" name="type" value="'.$row["type"].'"?>
+        <center>  <button type="submit" class="btn btn-default" style="width: 130px">
+              รายละเอียดที่เคยสั่ง
+            </button> 
+          
+        </center>
+    </form>';
+                                            }?>
+
+
+                                            <?php if ($row["status"] == '2') {
                                                 echo'<form class="uk-form" action="" method="post">
         <input id="name" type="hidden" class="form-control" name="login_id" value="'.$s_login_id.'"?>
          <input id="name" type="hidden" class="form-control" name="id_report" value="'.$row["id_report"].'"?>
