@@ -1,7 +1,7 @@
 <!-- ลิ้ง css hder -->
 <?php
   include '../connectdb.php';
-  $login_id = $_GET['login_id'];
+//  $login_id = $_GET['login_id'];
 
   $sql = "SELECT * FROM tblogin ";
   $res_login = mysqli_query($dbcon,$sql);

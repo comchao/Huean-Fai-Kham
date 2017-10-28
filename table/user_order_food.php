@@ -192,12 +192,15 @@ WHERE  booktb.login_id = $s_login_id  ";
                             </tbody>
                         </table>
                             <center>
-                                <div class="form-group" style="margin-left: 500px;">
+                                <div class="form-group" style="margin-left: 200px;">
                                     <div class="">
                                         <h4>ยอดรวมรวม:  <?php echo  $tb_total;?> บาท<br><br></h4>
 
-                                        <button type="submit" class="btn btn-primary" style="width: 130px">
+                                        <button type="submit" class="btn btn-danger" style="width: 130px">
                                             ยกเลิกการสั่งอาหาร
+                                        </button>
+                                        <button type="submit" class="btn btn-group" style="width: 130px">
+                                            พิมพ์ใบเสร็จ
                                         </button>
 
                                     </div>

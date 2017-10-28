@@ -83,64 +83,124 @@ include '../testhd/hder.php';
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">สถานะโต๊ะ</div>
+                    <div class="panel-heading">รายการสั่งอาหาร</div>
 
                     <div class="panel-body">
+<!--                        --><?php
+//                        $sql = "SELECT * FROM booktb INNER
+//JOIN tbtable ON booktb.id_table = tbtable.tb_id
+//JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
+//JOIN tblogin ON booktb.login_id = tblogin.login_id
+//WHERE  booktb.login_id = $s_login_id ";
+//                        $res = mysqli_query($dbcon,$sql);
+//                        $i=0 ;
+//                        $tb_total = 0;
+//
+//                        while ($row = mysqli_fetch_assoc($res))
+//                        {
+//                        if ($s_login_id == $row['login_id']&$row['id_status']!='0') {
+//                        ?>
+<!---->
+<!---->
+<!---->
+<!--                        <center>-->
+<!---->
+<!--                            คุณ: --><?php //echo $row['login_firstname']; ?><!--  --><?php //echo $row['login_lastname']; ?><!-- <br>-->
+<!--                            ที่อยู่: --><?php //echo $row['login_address']; ?><!-- <br>-->
+<!--                            อีเมล์: --><?php //echo $row['login_email']; ?>
+<!--                            --><?php //echo $row['login_phone']; ?><!--<br>-->
+<!--                            วันที่จอง: --><?php //echo $row['tb_date']; ?>
+<!--                            เวลา: --><?php //echo $row['tb_time']; ?>
+<!--                            เวลาที่จอง: --><?php //echo $row['update_time']; ?><!--<br>-->
+<!--                            โต๊ะ: --><?php //echo $row['tb_numchair']; ?><!--    โซน: --><?php //echo $row['zone_name']; ?><!--<br>-->
+<!--                            --><?php
+//                            $i++;
+//
+//                            }}
 
-                        <table class="table table-hover">
-                            <thead>
-                            <tr>
-                                <th>ลำดับ	</th>
-                                <th>หมายเลขโต๊ะ</th>
-                                <th>จำนวนเก้าอี้</th>
-                                <th>โซนโต๊ะ</th>
-                                <th>สถานะ	</th>
-
-                            </tr>
-                            </thead>
-                            <tbody>
-
-                            <input id="tb_id" type="hidden" class="form-control" name="tb_id">
-                            <?php
-                            $sql = "SELECT * FROM tbtable INNER JOIN tbzonetable ON tbtable.zone_id = tbzonetable.zone_id WHERE ";
-                            $res = mysqli_query($dbcon,$sql);
-                            $i=0 ;
-                            while ($row_zonetable = mysqli_fetch_assoc($res))
-                            {
-                                ?>
-
-                                <tr>
-                                    <td><div align=""><?php echo $i+1?></div></td>
-                                    <td><?php echo $row_zonetable["tb_numchair"];?></td>
-                                    <td><?php echo $row_zonetable["tb_number"];?> ตัว</td>
-                                    <td  align=""><?php echo $row_zonetable["zone_name"];?></td>
-
-                                    <?php
-                                    if($row_zonetable["tb_status"]=="0"){ ?>
-                                        <td style="color: lightcoral" align="">ไม่ว่าง</td>
-                                    <?php }
-                                    else{
-
-                                        ?>
-                                        <td style="color: lightgreen" align="">ว่าง</td>
-                                        <?php
-                                    } $i++
-                                    ?>
-
-                                </tr>
-
-
-
-                                <?php
-
-                            }
 
 
                             ?>
 
+                            <table class="table table-hover">
+                                <thead>
+                                <tr>
+                                    <th>ลำดับ</th>
+                                    <th>ชื่อลูกค้า</th>
+                                    <th>โต๊ะ</th>
+                                    <th>จำนวนเก้าอี้</th>
+                                    <th>โซน</th>
+                                    <th>สถานะ</th>
+                                    <th>ดูรายละเอียด</th>
 
-                            </tbody>
-                        </table>
+
+
+
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                <input id="tb_id" type="hidden" class="form-control" name="tb_id">
+                                <?php
+                                $sql = "SELECT * FROM booktb INNER
+JOIN tbtable ON booktb.id_table = tbtable.tb_id
+JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
+JOIN tblogin ON booktb.login_id = tblogin.login_id ";
+                                $res = mysqli_query($dbcon,$sql);
+                                $i=0 ;
+                                $tb_total = 0;
+
+                                while ($row = mysqli_fetch_assoc($res))
+                                {
+                                    ?>
+
+                                    <tr>
+                                        <td><div align=""><?php echo $i+1?></div></td>
+                                        <td><?php echo $row["login_firstname"];?> <?php echo $row["login_lastname"];?></td>
+                                        <td><?php echo $row["tb_numchair"];?></td>
+                                        <td><?php echo $row["tb_number"];?></td>
+                                        <td><?php echo $row["zone_name"];?></td>
+                                        <td><?php echo $row["tb_status"];?></td>
+                                        <td> <button type="submit" class="btn btn-danger" style="width: 130px">
+                                                ดูรายการอาหาร
+                                            </button></td>
+
+                                    </tr>
+
+
+
+                                    <?php
+                                    $i++;
+
+                                }
+
+
+
+                                ?>
+                                <td</td>
+
+
+
+
+
+
+                                </tbody>
+                            </table>
+                            <center>
+                                <div class="form-group" style="margin-left: 200px;">
+                                    <div class="">
+                                        <h4>ยอดรวมรวม:  <?php echo  $tb_total;?> บาท<br><br></h4>
+
+                                        <button type="submit" class="btn btn-danger" style="width: 130px">
+                                            ยกเลิกการสั่งอาหาร
+                                        </button>
+                                        <button type="submit" class="btn btn-group" style="width: 130px">
+                                            พิมพ์ใบเสร็จ
+                                        </button>
+
+                                    </div>
+                                </div>
+                            </center>
 
 
                     </div>
@@ -154,156 +214,12 @@ include '../testhd/hder.php';
 
 
 
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">จองโต๊ะ</div>
 
-                    <div class="panel-body">
-
-                        <form class="uk-form" action="reservations_in_save.php" method="post">
-
-
-                            <div>
-                                <label for="name" class="col-md-4 control-label">วันที่	</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="date" class="form-control" name="tb_date"  required autofocus>
-
-
-                                </div>
-                                <br> <br>
-                            </div>
-
-                            <div class="">
-                                <label for="name" class="col-md-4 control-label">เวลา	</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="time" class="form-control" name="tb_time"  required autofocus>
-                                    <input id="name" type="hidden" class="form-control" name="id_status" value="1" required autofocus>
-
-                                    <?php
-                                    if(isset($_SESSION['is_Member'])){
-                                        ?>
+    <br>   <br>   <br>
 
 
 
 
-                                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
-
-
-
-
-
-
-
-
-
-
-                                    <?php }else { ?>
-
-                                    <?php } ?>
-
-
-                                </div>
-                                <br> <br>
-                            </div>
-
-
-
-                            <div>
-                                <label for="name" class="col-md-4 control-label">โซนโต๊ะ		</label>
-
-                                <div class="col-md-6">
-                                    <select  class="form-control" name="zone_id">
-                                        <?php
-                                        $sql_zonetable = "SELECT * FROM tbzonetable";
-                                        $res_zonetable = mysqli_query($dbcon,$sql_zonetable);
-                                        while ($row_zonetable = mysqli_fetch_assoc($res_zonetable)) {
-                                            if ($row_zonetable['zone_id'] == $row_zonetable['zone_id']) {
-                                                echo '<option value="'.$row_zonetable['zone_id'].'" selected>'.$row_zonetable['zone_name'].'</option>';;
-                                            }else {
-                                                echo '<option value="'.$row_zonetable['zone_id'].'">'.$row_zonetable['zone_name'].'</option>';
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-
-                                    </select>
-
-                                    </select>
-
-
-
-
-                                </div>
-                                <br> <br>
-                            </div>
-
-                            <div class=""">
-                            <label for="name" class="col-md-4 control-label">หมายเลขโต๊ะ		</label>
-
-                            <div class="col-md-6">
-                                <select  class="form-control" name="id_table">
-                                    <?php
-                                    $sql_zonetable = "SELECT * FROM tbtable";
-                                    $res_zonetable = mysqli_query($dbcon,$sql_zonetable);
-                                    while ($row_zonetable = mysqli_fetch_assoc($res_zonetable)) {
-                                        if ($row_zonetable['tb_status'] != "0") {
-                                            echo '<option value="'.$row_zonetable['tb_id'].'" selected>'.$row_zonetable['tb_numchair'].'</option>';;
-                                        }
-                                    }
-                                    ?>
-                                </select>
-
-                            </div>
-                            <br> <br>
-                    </div>
-
-
-
-
-
-
-                    <div class="">
-                        <label for="name" class="col-md-4 control-label">ไม่เลือกอาหาร	</label>
-
-                        <div class="col-md-6">
-                            <input id="name" type="radio" class="" name="name" value="{{ old('name') }}"  checked="checked" />
-
-
-                        </div>
-                        <br> <br>
-                    </div>
-
-                    <div class="">
-                        <label for="name" class="col-md-4 control-label">เลือกอาหาร		</label>
-
-                        <div class="col-md-6">
-                            <input id="name" type="radio" class="" name="name"  >
-
-
-                        </div>
-                        <br> <br>
-                    </div>
-
-
-
-
-
-                    <div class="form-group">
-                        <div class="col-md-6 col-md-offset-4">
-                            <button type="submit" class="btn btn-primary">
-                                ยืนยันการทำรายการ
-                            </button>
-                        </div>
-                    </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
 </div>
 </form>
 

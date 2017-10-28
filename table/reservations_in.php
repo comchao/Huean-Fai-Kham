@@ -153,6 +153,23 @@ include '../testhd/hder.php';
     </form>
 
 
+    <?php
+
+    $sql = "SELECT * FROM booktb *";
+    $res = mysqli_query($dbcon,$sql);
+    $i=0 ;
+    $tb_total = 0;
+
+    while ($row = mysqli_fetch_assoc($res))
+    {
+    if ($s_login_id == $row['login_id']&$row['id_status']!='0') {
+    ?>
+
+      <?  $i++;
+
+        }} ?>
+
+
 
     <div class="container">
         <div class="row">
