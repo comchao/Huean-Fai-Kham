@@ -37,16 +37,6 @@ if($type== '2'){
 
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ?>
-<!DOCTYPE html>
-<html>
-
-<?php echo $login_id; ?>
-<?php echo $id_report; ?>
-
-
-        <input type="hidden" name="return_url" value="<?php
-        $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
-        echo $current_url; ?>" />
 
 
 </body>

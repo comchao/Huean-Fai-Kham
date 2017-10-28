@@ -87,17 +87,6 @@ include '../testhd/hder.php';
                     <div class="panel-heading">รายการออเดอร์</div>
 
                     <div class="panel-body">
-                        <?php
-
-
-
-
-
-
-
-
-
-                            ?>
 
                             <table class="table table-hover">
                                 <thead>
@@ -134,7 +123,6 @@ include '../testhd/hder.php';
                                         <td><?php echo $row["date_time"];?></td>
 
                                         <td>
-<!--                                        <td> --><?php //echo $row["status"];?><!-- -->
                                             <?php if ($row["status"] == '0') {
                                                 echo'ยังไม่ชำระ';
                                             }?>
@@ -165,7 +153,7 @@ include '../testhd/hder.php';
                                         </td>
 
                                         <td>
-                                            <!--                                        <td> --><?php //echo $row["status"];?><!-- -->
+
                                             <?php if ($row["status"] == '0') {
                                                 echo'<form class="uk-form" action="order_set_page.php" method="post">
         <input id="name" type="hidden" class="form-control" name="login_id" value="'.$s_login_id.'"?>
@@ -183,8 +171,8 @@ include '../testhd/hder.php';
         <input id="name" type="hidden" class="form-control" name="login_id" value="'.$s_login_id.'"?>
          <input id="name" type="hidden" class="form-control" name="id_report" value="'.$row["id_report"].'"?>
          <input id="name" type="hidden" class="form-control" name="type" value="'.$row["type"].'"?>
-        <center>  <button type="submit" class="btn btn-default" style="width: 130px">
-              รายละเอียดที่เคยสั่ง
+        <center>  <button type="submit" class="btn btn-primary" style="width: 130px">
+              ประวัติการสั่งซื้อ
             </button> 
           
         </center>
@@ -198,7 +186,7 @@ include '../testhd/hder.php';
          <input id="name" type="hidden" class="form-control" name="id_report" value="'.$row["id_report"].'"?>
          <input id="name" type="hidden" class="form-control" name="type" value="'.$row["type"].'"?>
         <center>  <button type="submit" class="btn btn-default" style="width: 130px">
-              รายละเอียดที่เคยสั่ง
+           ประวัติการสั่งซื้อ
             </button> 
           
         </center>

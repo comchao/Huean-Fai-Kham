@@ -97,6 +97,7 @@ include '../testhd/hder.php';
 
 
                         $sql = "SELECT * FROM booktb INNER
+
                         JOIN tbtable ON booktb.id_table = tbtable.tb_id
                         JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
                         JOIN tblogin ON booktb.login_id = tblogin.login_id
@@ -140,7 +141,7 @@ include '../testhd/hder.php';
                                     <th>อาหาร</th>
                                     <th>ราคา/หน่วย</th>
                                     <th>จำนวน</th>
-                                    <th>ราคา</th>
+                                    <th>รวม</th>
 
 
                                 </tr>
@@ -150,10 +151,17 @@ include '../testhd/hder.php';
                                 <input id="tb_id" type="hidden" class="form-control" name="tb_id">
                                 <?php
 
-                                $sql = "SELECT * FROM orders INNER 
+
+
+                                $sql = "  SELECT 
+product.name as  product_name ,
+product.pid as  product_pid ,
+orders.tb_num as  orders_tb_num ,
+orders.tb_total as  orders_tb_total ,SUM(orders.tb_total) AS SUM_orders_tb_total
+FROM orders INNER 
                             JOIN product ON orders.pid = product.pid 
-                            WHERE  orders.login_id =  $s_login_id  
-                            AND orders.id_report =  $id_report
+                            WHERE  orders.login_id = $s_login_id
+                                AND orders.id_report =  $id_report
                             
                             ";
 
@@ -167,10 +175,10 @@ include '../testhd/hder.php';
 
                                     <tr>
                                         <td><div align=""><?php echo $i+1?></div></td>
-                                        <td><?php echo $row["name"];?></td>
-                                        <td><?php echo $row["price"];?></td>
-                                        <td><?php echo $row["tb_num"];?></td>
-                                        <td><?php echo $row["tb_total"];?></td>
+                                        <td><?php echo $row["product_name"];?></td>
+                                        <td><?php echo $row["product_pid"];?></td>
+                                        <td><?php echo $row["orders_tb_num"];?></td>
+                                        <td><?php echo $row["SUM_orders_tb_total"];?></td>
                                         <!--                                    <td>--><?php //echo $row_zonetable["tb_number"];?><!-- ตัว</td>-->
                                         <!--                                    <td  align="">--><?php //echo $row_zonetable["zone_name"];?><!--</td>-->
 
@@ -179,7 +187,9 @@ include '../testhd/hder.php';
                                         <!--                                        <td style="color: lightcoral" align="">ไม่ว่าง</td>-->
                                         <!--                                    --><?php //}
                                         //                                    else{
-                                        $tb_total= $row["price"]*$row["tb_num"];
+                                        $tb_total= $row["product_pid"]*$row["orders_tb_num"]; ?>
+
+
                                         //
                                         //                                        ?>
                                         <!--                                        <td style="color: lightgreen" align="">ว่าง</td>-->
@@ -209,31 +219,67 @@ include '../testhd/hder.php';
                                 </tbody>
                             </table>
                             <form class="uk-form" action="order_set_update.php" method="post">
-                            <center>
-                                <div class="form-group" style="margin-left: 200px;">
-                                    <div class="">
-                                        <h4>ยอดรวมรวม:  <?php echo  $tb_total;?> บาท<br><br></h4>
-
-
-                                            <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
-                                            <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
-                                            <input id="name" type="hidden" class="form-control" name="type" value="2">
-
-
-                                        <button type="submit" class="btn btn-danger" style="width: 130px">
-                                            ยกเลิกการสั่ง
-                                        </button>
-
-                                        <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
-                                            พิมพ์ใบเสร็จ
-                                        </button> <br>
+                                <center>
+                                    <div class="form-group" style="margin-left: 200px;">
+                                        <div class="">
+                                            <?php
 
 
 
+                                            $sql2 = "SELECT SUM(tb_total) as Total FROM orders 
+                            
+                            WHERE  orders.login_id =  $s_login_id  
+                            AND orders.id_report =  $id_report
+                            
+                            ";
 
+                                            $res2 = mysqli_query($dbcon,$sql2);
+
+                                            $tb_total2 = 0;
+
+                                            while ($row2 = mysqli_fetch_assoc($res2))
+                                            {
+                                                $tb_total2= $row2["Total"];
+                                                ?>
+
+
+
+
+
+
+                                                <?php ?>
+
+                                                </tr>
+
+
+
+                                                <?php
+
+
+                                            }
+
+
+
+                                            ?>
+                                            <h4>ยอดรวมรวม:  <?php echo  $tb_total2;?> บาท<br><br></h4>
+
+                                            <form class="uk-form" action="order_set_update.php" method="post">
+                                                <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
+                                                <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
+                                                <input id="name" type="hidden" class="form-control" name="type" value="2">
+
+                                                <button type="submit" class="btn btn-danger" style="width: 130px">
+                                                    ยกเลิกการสั่ง
+                                                </button>
+                                                <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
+                                                    พิมพ์ใบเสร็จ
+                                                </button>
+                                            </form>
+
+
+                                        </div>
                                     </div>
-                                </div>
-                            </center>
+                                </center>
                             </form>
 
 

@@ -124,9 +124,11 @@ include '../testhd/hder.php';
                                                     วันที่จอง: <?php echo $row['tb_date']; ?>
                                                     เวลา: <?php echo $row['tb_time']; ?>
                                                     เวลาที่จอง: <?php echo $row['update_time']; ?><br>
-                                                    โต๊ะ: <?php echo $row['tb_numchair']; ?>    โซน: <?php echo $row['zone_name']; ?><br>
-                                                    <?php
-                                                    $i++;
+                                                    โต๊ะ: <?php echo $row['tb_numchair']; ?>
+                                                    โซน: <?php echo $row['zone_name']; ?><br>
+
+                                                   <?
+                                                   $i++;
 
                                                 }}
 
