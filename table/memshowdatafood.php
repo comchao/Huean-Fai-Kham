@@ -314,7 +314,7 @@ include '../testhd/hder.php';
                 </div>
 
                 <center>   <button type="submit" class="btn btn-primary" style="width: 130px">
-                ยืนยันการทำรายการ
+             สั่งอาหาร
             </button>
 
 
