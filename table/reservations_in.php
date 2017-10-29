@@ -335,30 +335,15 @@ include '../testhd/hder.php';
     </div>
 
 
-    <?php
 
-
-    $sql = "SELECT* FROM report WHERE id_report =  '".$_GET['id_report']."''";
-    $res = mysqli_query($dbcon,$sql);
-    while ($row = mysqli_fetch_assoc($res)){
-
-
-        ?>
-        <form class="uk-form" action="user_order.php?login_id=<?php echo $_GET['login_id']?>&id_report=<?php echo $_GET['id_report'];?>" method="post">
-
-            <center>  <button type="submit" class="btn btn-danger" style="width: 130px">
-                    ดูรายการสั่งอาหาร
-                </button> <br>
-                <h4> *ท่านสามารถสั่งอาหารได้ครั้งละ1ออเดอร์เท่านั้น</h4>
-            </center>
-        </form>
-
-        </form>
-
-
-
-    <?php   }
-        ?>
+    <form class="uk-form" action="user_order.php" method="post">
+        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
+        <center>  <button type="submit" class="btn btn-danger" style="width: 130px">
+                ดูรายการสั่งอาหาร
+            </button> <br>
+            <h4> *ท่านสามารถสั่งอาหารได้ครั้งละ1ออเดอร์เท่านั้น</h4>
+        </center>
+    </form>
 
 
 
