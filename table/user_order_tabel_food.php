@@ -18,7 +18,7 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 -->
 <html>
 <head>
-    <title>เฮือนฝ้ายคำ</title>
+    <title>รายการสั่งอาหารพร้อมจองโต๊ะ</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -89,22 +89,26 @@ include '../testhd/hder.php';
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
                     <div class="panel-heading">รายการสั่งอาหารพร้อมจองโต๊ะ</div>
+                    <form class="uk-form" action="order_set_update.php" method="post">
 
                     <div class="panel-body">
+
                         <?php
 
 
 
 
 
-                        $sql = "SELECT * FROM booktb INNER
+                        $sql = "SELECT * FROM booktb 
                         JOIN tbtable ON booktb.id_table = tbtable.tb_id
                         JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
                         JOIN tblogin ON booktb.login_id = tblogin.login_id
                         JOIN report ON booktb.id_report = report.id_report
                         WHERE  booktb.login_id = $login_id 
                         AND  booktb.id_report = $id_report
-                        AND  report.type =  '1'";
+                        AND  report.type =  '1'
+                        GROUP BY booktb.zone_id 
+                        ";
                         $res = mysqli_query($dbcon,$sql);
                         $i=0 ;
                         $tb_total = 0;
@@ -117,7 +121,7 @@ include '../testhd/hder.php';
 
 
                         <center>
-
+                            <input id="name" type="hidden" class="form-control" name="tb_id" value=" <?php echo $row['tb_id']; ?>"?>
                             คุณ: <?php echo $row['login_firstname']; ?>  <?php echo $row['login_lastname']; ?> <br>
                             ที่อยู่: <?php echo $row['login_address']; ?> <br>
                             อีเมล์: <?php echo $row['login_email']; ?>
@@ -209,6 +213,7 @@ include '../testhd/hder.php';
                             <center>
                                 <div class="form-group" style="margin-left: 200px;">
                                     <div class="">
+
                                      <?php
 
 
@@ -250,7 +255,7 @@ include '../testhd/hder.php';
                                             ?>
                                             <h4>ยอดรวมรวม:  <?php echo  $tb_total2;?> บาท<br><br></h4>
 
-                                        <form class="uk-form" action="order_set_update.php" method="post">
+
                                             <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
                                             <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
                                             <input id="name" type="hidden" class="form-control" name="type" value="1">
@@ -261,14 +266,14 @@ include '../testhd/hder.php';
                                             <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
                                                 พิมพ์ใบเสร็จ
                                             </button>
-                                        </form>
+
 
 
                                     </div>
                                 </div>
                             </center>
 
-
+                    </form>
                     </div>
 
 
@@ -287,7 +292,7 @@ include '../testhd/hder.php';
 
 
 </div>
-</form>
+
 <input type="hidden" name="return_url" value="<?php
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 echo $current_url; ?>" />

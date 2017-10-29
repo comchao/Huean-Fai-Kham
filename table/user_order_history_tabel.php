@@ -100,58 +100,58 @@ include '../testhd/hder.php';
                         WHERE  booktb.login_id = $login_id 
                         AND  booktb.id_report = $id_report
                         AND  report.type =  '0'";
-                                                $res = mysqli_query($dbcon,$sql);
+                        $res = mysqli_query($dbcon,$sql);
 
-                                                while ($row = mysqli_fetch_assoc($res))
-                                                {
-                                                if ($login_id == $row['login_id']&$row['id_status']!='1') {
-                                                    ?>
+                        while ($row = mysqli_fetch_assoc($res))
+                        {
+                        if ($login_id == $row['login_id']&$row['id_status']!='1') {
+                        ?>
 
-
-
-                                                <center>
-
-                                                    คุณ: <?php echo $row['login_firstname']; ?>  <?php echo $row['login_lastname']; ?> <br>
-                                                    ที่อยู่: <?php echo $row['login_address']; ?> <br>
-                                                    อีเมล์: <?php echo $row['login_email']; ?>
-                                                    <?php echo $row['login_phone']; ?><br>
-                                                    วันที่จอง: <?php echo $row['tb_date']; ?>
-                                                    เวลา: <?php echo $row['tb_time']; ?>
-                                                    เวลาที่จอง: <?php echo $row['update_time']; ?><br>
-                                                    โต๊ะ: <?php echo $row['tb_numchair']; ?>
-                                                    โซน: <?php echo $row['zone_name']; ?><br>
-
-
-
-                                              <?php  }}
-
-
-
-                                                ?>
 
 
                         <center>
-                            <div class="form-group" style="margin-left: 200px;">
-                                <div class="">
-                                    <h4>ยอดรวมรวม:  <?php echo  "0";?> บาท<br><br></h4>
 
-                                    <form class="uk-form" action="order_set_update.php" method="post">
-                                    <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
-                                    <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
-                                    <input id="name" type="hidden" class="form-control" name="type" value="0">
-
-                                    <button type="submit" class="btn btn-danger" style="width: 130px">
-                                        ยกเลิกการสั่ง
-                                    </button>
-                                        <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
-                                            พิมพ์ใบเสร็จ
-                                        </button>
-                                    </form>
+                            คุณ: <?php echo $row['login_firstname']; ?>  <?php echo $row['login_lastname']; ?> <br>
+                            ที่อยู่: <?php echo $row['login_address']; ?> <br>
+                            อีเมล์: <?php echo $row['login_email']; ?>
+                            <?php echo $row['login_phone']; ?><br>
+                            วันที่จอง: <?php echo $row['tb_date']; ?>
+                            เวลา: <?php echo $row['tb_time']; ?>
+                            เวลาที่จอง: <?php echo $row['update_time']; ?><br>
+                            โต๊ะ: <?php echo $row['tb_numchair']; ?>
+                            โซน: <?php echo $row['zone_name']; ?><br>
 
 
+
+                            <?php  }}
+
+
+
+                            ?>
+
+
+                            <center>
+                                <div class="form-group" style="margin-left: 200px;">
+                                    <div class="">
+                                        <h4>ยอดรวมรวม:  <?php echo  "0";?> บาท<br><br></h4>
+
+                                        <form class="uk-form" action="order_set_update.php" method="post">
+                                            <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
+                                            <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
+                                            <input id="name" type="hidden" class="form-control" name="type" value="0">
+
+                                            <button type="submit" class="btn btn-danger" style="width: 130px">
+                                                ยกเลิกการสั่ง
+                                            </button>
+                                            <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
+                                                พิมพ์ใบเสร็จ
+                                            </button>
+                                        </form>
+
+
+                                    </div>
                                 </div>
-                            </div>
-                        </center>
+                            </center>
 
 
                     </div>

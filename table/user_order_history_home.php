@@ -96,16 +96,15 @@ include '../testhd/hder.php';
 
 
 
-                        $sql = "SELECT * FROM booktb 
+                        $sql = "SELECT * FROM booktb INNER
+
                         JOIN tbtable ON booktb.id_table = tbtable.tb_id
                         JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
                         JOIN tblogin ON booktb.login_id = tblogin.login_id
                         JOIN report ON booktb.id_report = report.id_report
                         WHERE  booktb.login_id = $login_id 
                         AND  booktb.id_report = $id_report
-                        AND  report.type =  '2'
-                         GROUP BY booktb.zone_id 
-                        ";
+                        AND  report.type =  '2'";
                         $res = mysqli_query($dbcon,$sql);
                         $i=0 ;
                         $tb_total = 0;
