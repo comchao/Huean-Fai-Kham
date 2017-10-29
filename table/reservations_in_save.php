@@ -16,7 +16,7 @@ $login_id = $_POST['login_id'];
 
 
 
-$query = "INSERT INTO booktb(id_table,tb_date,tb_time,zone_id,login_id)
+$query = "INSERT INTO booktb(id_table,tb_date,tb_time,zone_id,id_status,login_id)
             VALUES('$id_table','$tb_date','$tb_time','$zone_id','$id_status','$login_id')";
 $result = mysqli_query($dbcon,$query);
 

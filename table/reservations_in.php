@@ -143,6 +143,7 @@ include '../testhd/hder.php';
                         </table>
 
 
+
                     </div>
 
 
@@ -161,14 +162,14 @@ include '../testhd/hder.php';
 
                     <div class="panel-body">
 
-                        <form class="uk-form" action="reservations_in_save.php" method="post">
+                        <form class="uk-form" action="cart_set_page.php" method="post">
 
 
                             <div>
                                 <label for="name" class="col-md-4 control-label">วันที่	</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="date" class="form-control" name="tb_date"  required autofocus>
+                                    <input id="name" type="date" class="form-control" name="tb_date" value="" required >
 
 
                                 </div>
@@ -179,8 +180,8 @@ include '../testhd/hder.php';
                                 <label for="name" class="col-md-4 control-label">เวลา	</label>
 
                                 <div class="col-md-6">
-                                    <input id="name" type="time" class="form-control" name="tb_time"  required autofocus>
-                                    <input id="name" type="hidden" class="form-control" name="id_status" value="1" required autofocus>
+                                    <input id="name" type="time" class="form-control" name="tb_time" value="" required >
+
 
                                     <?php
                                     if(isset($_SESSION['is_Member'])){
@@ -189,7 +190,7 @@ include '../testhd/hder.php';
 
 
 
-                                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
+                                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required >
 
 
 
@@ -269,7 +270,7 @@ include '../testhd/hder.php';
                         <label for="name" class="col-md-4 control-label">ไม่เลือกอาหาร	</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="radio" class="" name="name" value="{{ old('name') }}"  checked="checked" />
+                            <input id="name" type="radio" class="" name="type" value="0" checked="checked" >
 
 
                         </div>
@@ -277,11 +278,28 @@ include '../testhd/hder.php';
                     </div>
 
                     <div class="">
-                        <label for="name" class="col-md-4 control-label">เลือกอาหาร		</label>
+                        <label for="name" class="col-md-4 control-label">เลือกอาหาร </label>
 
                         <div class="col-md-6">
-                            <input id="name" type="radio" class="" name="name"  >
+                            <input id="name" type="radio" class="" name="type" value="1"  />
+                            <?php
 
+                            $id_report;
+                            $sql = "SELECT MAX(id_report) as Id_report FROM report";
+                            $res = mysqli_query($dbcon,$sql);
+                            while ($row = mysqli_fetch_assoc($res)) {
+                                $id_report=$row["Id_report"]+1;
+
+//
+                            }
+
+
+
+
+
+                            ?>
+
+                            <input id="name" type="hidden" class="" name="id_report" value="<?php echo $std_id="".sprintf("%09d",$id_report); ?>"  />
 
                         </div>
                         <br> <br>

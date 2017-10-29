@@ -6,6 +6,8 @@ $sql = "SELECT * FROM tblogin ";
 $res_login = mysqli_query($dbcon,$sql);
 $result_login = mysqli_query($dbcon,$sql);
 
+
+
 ?>
 
 <!DOCTYPE HTML>

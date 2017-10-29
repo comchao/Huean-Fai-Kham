@@ -5,6 +5,7 @@ include '../connectdb.php';
 $sql = "SELECT * FROM tblogin ";
 $res_login = mysqli_query($dbcon,$sql);
 $result_login = mysqli_query($dbcon,$sql);
+
 $login_id  = $_GET['login_id'];
 $id_report  = $_GET['id_report'];
 ?>
@@ -91,12 +92,7 @@ include '../testhd/hder.php';
 
                     <div class="panel-body">
                         <?php
-
-
-
-
-
-                                                $sql = "SELECT * FROM booktb INNER
+                        $sql = "SELECT * FROM booktb 
                         JOIN tbtable ON booktb.id_table = tbtable.tb_id
                         JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
                         JOIN tblogin ON booktb.login_id = tblogin.login_id
@@ -105,8 +101,6 @@ include '../testhd/hder.php';
                         AND  booktb.id_report = $id_report
                         AND  report.type =  '0'";
                                                 $res = mysqli_query($dbcon,$sql);
-                                                $i=0 ;
-                                                $tb_total = 0;
 
                                                 while ($row = mysqli_fetch_assoc($res))
                                                 {
@@ -127,10 +121,9 @@ include '../testhd/hder.php';
                                                     โต๊ะ: <?php echo $row['tb_numchair']; ?>
                                                     โซน: <?php echo $row['zone_name']; ?><br>
 
-                                                   <?
-                                                   $i++;
 
-                                                }}
+
+                                              <?php  }}
 
 
 
@@ -140,7 +133,7 @@ include '../testhd/hder.php';
                         <center>
                             <div class="form-group" style="margin-left: 200px;">
                                 <div class="">
-                                    <h4>ยอดรวมรวม:  <?php echo  $tb_total;?> บาท<br><br></h4>
+                                    <h4>ยอดรวมรวม:  <?php echo  "0";?> บาท<br><br></h4>
 
                                     <form class="uk-form" action="order_set_update.php" method="post">
                                     <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
@@ -150,10 +143,11 @@ include '../testhd/hder.php';
                                     <button type="submit" class="btn btn-danger" style="width: 130px">
                                         ยกเลิกการสั่ง
                                     </button>
+                                        <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
+                                            พิมพ์ใบเสร็จ
+                                        </button>
                                     </form>
-                                    <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
-                                        พิมพ์ใบเสร็จ
-                                    </button>
+
 
                                 </div>
                             </div>
