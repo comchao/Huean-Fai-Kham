@@ -5,7 +5,7 @@ include '../connectdb.php';
 $sql = "SELECT * FROM tblogin ";
 $res_login = mysqli_query($dbcon,$sql);
 $result_login = mysqli_query($dbcon,$sql);
-
+$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 
 
 ?>

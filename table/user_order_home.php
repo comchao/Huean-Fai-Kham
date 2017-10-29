@@ -303,6 +303,9 @@ FROM orders INNER
 </div>
 </form>
 
+<input type="hidden" name="current_url" value="<?php
+$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+echo $current_url; ?>" />
 
 
 

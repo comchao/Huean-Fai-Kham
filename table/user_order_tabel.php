@@ -5,7 +5,7 @@ include '../connectdb.php';
 $sql = "SELECT * FROM tblogin ";
 $res_login = mysqli_query($dbcon,$sql);
 $result_login = mysqli_query($dbcon,$sql);
-
+$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 $login_id  = $_GET['login_id'];
 $id_report  = $_GET['id_report'];
 ?>
@@ -176,7 +176,9 @@ include '../testhd/hder.php';
 
 
 
-
+<input type="hidden" name="return_url" value="<?php
+$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+echo $current_url; ?>" />
 <!-- Scripts -->
 
 <script src="assets/js/jquery.min.js"></script>

@@ -7,6 +7,7 @@ $res_login = mysqli_query($dbcon,$sql);
 $result_login = mysqli_query($dbcon,$sql);
 $login_id  = $_GET['login_id'];
 $id_report  = $_GET['id_report'];
+$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ?>
 
 <!DOCTYPE HTML>
@@ -287,6 +288,9 @@ include '../testhd/hder.php';
 
 </div>
 </form>
+<input type="hidden" name="return_url" value="<?php
+$current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
+echo $current_url; ?>" />
 
 
 
