@@ -49,6 +49,63 @@ if($_POST['type'] == '0') {
 
 }
 
+
+//หน้าจองแต่โต๊ะ+อาหาร
+if($_POST['type'] == '1') {
+
+    echo $_POST['id_report'];
+    $id_table = $_POST['id_table'];
+//วันที่
+    $tb_date = $_POST['tb_date'];
+//เวลา
+    $tb_time = $_POST['tb_time'];
+//โซนโต๊ะ
+    $zone_id = $_POST['zone_id'];
+
+    $login_id = $_POST['login_id'];
+    $id_report = $_POST['id_report'];
+
+    $type = $_POST['type'];
+
+
+    // insert  report to db
+    $query_report = "INSERT INTO report(id_report,login_id,status,type)
+             VALUES('$id_report','$login_id','0','$type')";
+    $result_report = mysqli_query($dbcon, $query_report);
+
+    // insert  booktb to db
+    $query_booktb = "INSERT INTO booktb(id_table,tb_date,tb_time,zone_id,login_id,id_report)
+              VALUES('$id_table','$tb_date','$tb_time','$zone_id','$login_id','$id_report')";
+    $result_booktb = mysqli_query($dbcon, $query_booktb);
+
+    // update  tbtable to db
+    $query_tbtable = "UPDATE tbtable SET tb_status='0' WHERE tb_id=$id_table";
+    $result_tbtable = mysqli_query($dbcon,$query_tbtable);
+
+
+
+
+    if ($result_booktb &$result_tbtable&$result_report) {
+
+        $_SESSION['login_id']   = $_POST['login_id'];
+        $_SESSION['id_report']   = $_POST['id_report'];
+
+        header("Location: index.php?login_id=$login_id&id_report=$id_report");
+    } else {
+        echo "เกิดข้อผิดพลาด" . mysqli_error($dbcon);
+    }
+    mysqli_close($dbcon);
+
+}
+
+
+
+
+
+
+
+
+
 /*
 /$login_id  = $_POST['login_id'];
 //$type  = $_POST['type'];

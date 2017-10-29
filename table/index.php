@@ -4,6 +4,7 @@
         session_start();
         $id_user   = $_SESSION['login_id'];
     }
+    $id_report   = $_GET['id_report'];
 
 include_once("config.php");
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
@@ -27,7 +28,7 @@ require '../connectdb.php';
 if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 {
 	echo '<div class="cart-view-table-front" id="view-cart">';
-	echo '<h3>รายการที่สั่ง</h3>';
+	echo '<h3>ตะกร้าออเดอร์อาหาร</h3>';
 	echo '<form method="post" action="cart_update.php">'
     ;
 
@@ -70,8 +71,9 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
     echo '</form>';
     echo '
 
- <form method="post" action="view_cart.php?login_id='.$id_user.'">
+ <form method="post" action="view_cart.php?login_id='.$id_user.'&id_report='.$id_report.'">
     <input type="hidden" name="login_id" value="'.$id_user.'" />
+     <input type="hidden" name="id_report" value="'.$id_report.'" />
 
     <button type="submit">สั่งอาหาร</button>
     </form>
