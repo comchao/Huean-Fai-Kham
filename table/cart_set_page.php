@@ -41,7 +41,7 @@ if($_POST['type'] == '0') {
 
 
     if ($result_booktb &$result_tbtable&$result_report) {
-        header("Location: user_order.php?login_id=$login_id&id_report=$id_report");
+        header("Location: user_order_tabel.php?login_id=$login_id&id_report=$id_report");
     } else {
         echo "เกิดข้อผิดพลาด" . mysqli_error($dbcon);
     }
