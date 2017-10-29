@@ -95,6 +95,9 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 
     <input id="login_id" type="hidden" class="form-control" name="login_id[]" value="<?php echo $id_user?>">
     <input id="id_report" type="hidden" class="form-control" name="id_report[]" value="<?php echo $id_report?>">
+
+            <input id="login_id" type="hidden" class="form-control" name="login_ids" value="<?php echo $id_user?>">
+            <input id="id_report" type="hidden" class="form-control" name="id_reports" value="<?php echo $id_report?>">
             <?php
 
 			$subtotal = ($product_price * $product_qty); //calculate Price x Qty ?>

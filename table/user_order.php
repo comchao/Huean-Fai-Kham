@@ -157,7 +157,7 @@ include '../testhd/hder.php';
                                         <td>
 
                                             <?php if ($row["status"] == '0') {
-                                                echo'<form class="uk-form" action="order_set_page.php" method="post">
+                                                echo'<form class="uk-form" action="order_set_page.php?login_id='.$s_login_id.'&id_report='.$row["id_report"].'&type='.$row["type"].'" method="post">
         <input id="name" type="hidden" class="form-control" name="login_id" value="'.$s_login_id.'"?>
          <input id="name" type="hidden" class="form-control" name="id_report" value="'.$row["id_report"].'"?>
          <input id="name" type="hidden" class="form-control" name="type" value="'.$row["type"].'"?>
@@ -169,7 +169,7 @@ include '../testhd/hder.php';
     </form>';
                                             }?>
                                             <?php if ($row["status"] == '1') {
-                                                echo'<form class="uk-form" action="order_set_page_history.php" method="post">
+                                                echo'<form class="uk-form" action="order_set_page_history.php?login_id='.$s_login_id.'&id_report='.$row["id_report"].'&type='.$row["type"].'" method="post">
         <input id="name" type="hidden" class="form-control" name="login_id" value="'.$s_login_id.'"?>
          <input id="name" type="hidden" class="form-control" name="id_report" value="'.$row["id_report"].'"?>
          <input id="name" type="hidden" class="form-control" name="type" value="'.$row["type"].'"?>
@@ -183,7 +183,7 @@ include '../testhd/hder.php';
 
 
                                             <?php if ($row["status"] == '2') {
-                                                echo'<form class="uk-form" action="order_set_page_history.php" method="post">
+                                                echo'<form class="uk-form" action="order_set_page_history.php?login_id='.$s_login_id.'&id_report='.$row["id_report"].'&type='.$row["type"].'" method="post">
         <input id="name" type="hidden" class="form-control" name="login_id" value="'.$s_login_id.'"?>
          <input id="name" type="hidden" class="form-control" name="id_report" value="'.$row["id_report"].'"?>
          <input id="name" type="hidden" class="form-control" name="type" value="'.$row["type"].'"?>
@@ -227,10 +227,10 @@ include '../testhd/hder.php';
                             <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $_GET["login_id"]?>"? >
                             <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo $_GET["id_report"]?>"?>
 
-                            <center><button type="submit" class="btn btn-group" style="width: 130px " onclick="myFunction()">
+                            <center><button type="submit" class="btn btn-group" style="width: 130px ">
                                     ย้อนกลับ
                                 </button></center>
-                                </button></center>
+
 
                         </form>
 

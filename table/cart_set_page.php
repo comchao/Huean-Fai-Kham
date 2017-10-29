@@ -99,7 +99,7 @@ if($_POST['type'] == '1') {
 }
 
 //อาหารกลับบ้าน
-if($_POST['type'] == '3') {
+if($_POST['type'] == '2') {
 
     echo$login_id = $_POST['login_id'];
     echo $id_report = $_POST['id_report'];

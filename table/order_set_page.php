@@ -4,10 +4,10 @@ if(!isset($_SESSION))
     session_start();
 
 }
-$login_id  = $_POST['login_id'];
-$id_report  = $_POST['id_report'];
+$login_id  = $_GET['login_id'];
+$id_report  = $_GET['id_report'];
 
-$type  = $_POST['type'];
+$type  = $_GET['type'];
 
 
 include_once("config.php");
@@ -21,7 +21,7 @@ if($type== '0'){
 //หน้าจองแต่โต๊ะ+อาหาร
 if($type== '1'){
 
-    header("Location: user_order_tabel_food.php?id_report=$id_report&login_id=$login_id");
+    header("Location: user_order_tabel_food.php?id_report=$id_report&login_id=$login_id&type=$type");
 }
 
 

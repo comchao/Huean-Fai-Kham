@@ -2,6 +2,9 @@
 //include '../sesstion.php';
 require '../connectdb.php';
 
+$login_id = $_POST['login_ids'];
+$id_report = $_POST['id_reports'];
+
 
 
 
@@ -24,7 +27,7 @@ VALUES('".$_POST['product_code'][$i]."','".$_POST["total"][$i]."','".$_POST["pro
      $results = mysqli_query($dbcon, $query);
 }
 if ($results) {
-    header("Location: reservations_in.php?login_id=$login_id&id_report=$id_report");
+    header("Location: order_set_page.php?login_id=$login_id&id_report=$id_report&type=1");
 }else {
     echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
 }

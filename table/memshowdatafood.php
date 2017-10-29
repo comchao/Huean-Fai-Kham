@@ -306,7 +306,7 @@ include '../testhd/hder.php';
                         ?>
 
                         <input id="name" type="hidden" class="" name="id_report" value="<?php echo $std_id="".sprintf("%09d",$id_report); ?>"  />
-                        <input id="name" type="hidden" class="" name="type" value="3"  />
+                        <input id="name" type="hidden" class="" name="type" value="2"  />
                         <input id="login_id" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
 
                     </div>

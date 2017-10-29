@@ -157,19 +157,33 @@ include '../testhd/hder.php';
                                                 พิมพ์ใบเสร็จ
                                             </button>
                                     </form>
+<br>
+                                    <form class="uk-form" action="reservations_in.php" method="post">
+                                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $_GET["login_id"]?>"? >
+                                        <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo $_GET["id_report"]?>"?>
+
+                                        <center><button type="submit" class="btn btn-group" style="width: 130px ">
+                                                ย้อนกลับ
+                                            </button></center>
+
+
+                                    </form>
+
 
 
 
                                     <?php   }else{ ?>
 
-                                    <form class="uk-form" action="user_order.php?login_id=<?php echo  $login_id;?>&id_report=<?php echo  $id_report;?>" method="post">
-                                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
-                                        <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
+                                        <form class="uk-form" action="reservations_in.php" method="post">
+                                            <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $_GET["login_id"]?>"? >
+                                            <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo $_GET["id_report"]?>"?>
 
-                                        <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
-                                            ย้อนกลับ
-                                        </button>
-                                    </form>
+                                            <center><button type="submit" class="btn btn-group" style="width: 130px ">
+                                                    ย้อนกลับ
+                                                </button></center>
+
+
+                                        </form>
 
                                    <?php } }?>
 
