@@ -44,12 +44,12 @@
           <a class="dropdown-toggle" data-toggle="dropdown" href="#"> บริการ<span class="caret"></span></a>
           <ul class="dropdown-menu">
               <li><a href="../table/reservations_in.php"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"> จองโต๊ะ/สั่งอาหาร</a></li>
-            <li><a href="../testhd/memshowdatafood.php"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> สั่งอาหารกลับบ้าน</a></li>
+            <li><a href="../table/memshowdatafood.php"><span class="glyphicon glyphicon-pencil" aria-hidden="true"> สั่งอาหารกลับบ้าน</a></li>
           </ul>
         </li>
-        <li><a href="../Member/review.php"><span class="glyphicon glyphicon-camera" aria-hidden="true">รีวิวรสชาติอาหาร</a></li>
+        <li><a href="../testhd/memshowdatafood.php"><span class="glyphicon glyphicon-camera" aria-hidden="true">รีวิวรสชาติอาหาร</a></li>
 
-        
+
       </ul>
 <ul class="nav navbar-nav navbar-right">
       <li>

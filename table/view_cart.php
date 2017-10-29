@@ -18,7 +18,7 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 
 <link href="style/style.css" rel="stylesheet" type="text/css"></head>
 <body>
-<h1 align="center">ใบเสร็จสั่งอาหาร</h1>
+<h1 align="center">รายการสั่งอาหาร</h1>
 
 
 <?php //echo $id_user; ?>
