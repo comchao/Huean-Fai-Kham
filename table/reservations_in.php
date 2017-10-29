@@ -270,7 +270,7 @@ include '../testhd/hder.php';
                         <label for="name" class="col-md-4 control-label">ไม่เลือกอาหาร	</label>
 
                         <div class="col-md-6">
-                            <input id="name" type="radio" class="" name="type" value="0" checked="checked" >
+                            <input id="name" type="radio" class="" name="type" value="0"  required>
 
 
                         </div>
@@ -281,7 +281,7 @@ include '../testhd/hder.php';
                         <label for="name" class="col-md-4 control-label">เลือกอาหาร </label>
 
                         <div class="col-md-6">
-                            <input id="name" type="radio" class="" name="type" value="1"  />
+                            <input id="name" type="radio" class="" name="type" value="1" required />
                             <?php
 
                             $id_report;
@@ -311,8 +311,20 @@ include '../testhd/hder.php';
 
                     <div class="form-group">
                         <div class="col-md-6 col-md-offset-4">
+<!--                            <button type="submit" class="btn btn-primary">-->
+<!--                                ยืนยันการทำรายการ-->
+<!--                            </button>-->
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-6 col-md-offset-4">
                             <button type="submit" class="btn btn-primary">
-                                ยืนยันการทำรายการ
+                                ยีนยันไม่เลือกอาหาร
+                            </button>
+
+                            <button type="submit" class="btn btn-primary">
+                                ยีนยันเลือกอาหาร
                             </button>
                         </div>
                     </div>
@@ -322,14 +334,32 @@ include '../testhd/hder.php';
         </div>
     </div>
 
-    <form class="uk-form" action="user_order.php" method="post">
-        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
-        <center>  <button type="submit" class="btn btn-danger" style="width: 130px">
-                ดูรายการสั่งอาหาร
-            </button> <br>
-            <h4> *ท่านสามารถสั่งอาหารได้ครั้งละ1ออเดอร์เท่านั้น</h4>
-        </center>
-    </form>
+
+    <?php
+
+
+    $sql = "SELECT* FROM report WHERE id_report =  '".$_GET['id_report']."''";
+    $res = mysqli_query($dbcon,$sql);
+    while ($row = mysqli_fetch_assoc($res)){
+
+
+        ?>
+        <form class="uk-form" action="user_order.php?login_id=<?php echo $_GET['login_id']?>&id_report=<?php echo $_GET['id_report'];?>" method="post">
+
+            <center>  <button type="submit" class="btn btn-danger" style="width: 130px">
+                    ดูรายการสั่งอาหาร
+                </button> <br>
+                <h4> *ท่านสามารถสั่งอาหารได้ครั้งละ1ออเดอร์เท่านั้น</h4>
+            </center>
+        </form>
+
+        </form>
+
+
+
+    <?php   }
+        ?>
+
 
 
 

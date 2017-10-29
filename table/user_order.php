@@ -86,7 +86,7 @@ include '../testhd/hder.php';
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">รายการออเดอร์</div>
+                    <div class="panel-heading">ประวัติล่าสุด</div>
 
                     <div class="panel-body">
 
@@ -187,8 +187,8 @@ include '../testhd/hder.php';
         <input id="name" type="hidden" class="form-control" name="login_id" value="'.$s_login_id.'"?>
          <input id="name" type="hidden" class="form-control" name="id_report" value="'.$row["id_report"].'"?>
          <input id="name" type="hidden" class="form-control" name="type" value="'.$row["type"].'"?>
-        <center>  <button type="submit" class="btn btn-default" style="width: 130px">
-           ประวัติการสั่งซื้อ
+        <center>  <button type="submit" disabled class="btn btn-warning" style="width: 130px">
+          ยกเลิกออเดอร์แล้ว
             </button> 
           
         </center>
@@ -222,6 +222,17 @@ include '../testhd/hder.php';
 
                                 </tbody>
                             </table>
+
+                        <form class="uk-form" action="reservations_in.php?login_id=<?php echo  $_GET["login_id"]?>&id_report=<?php echo  $_GET["id_report"]?>" method="post">
+                            <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $_GET["login_id"]?>"?>
+                            <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo $_GET["id_report"]?>"?>
+
+                            <center><button type="submit" class="btn btn-group" style="width: 130px " onclick="myFunction()">
+                                    ย้อนกลับ
+                                </button></center>
+                                </button></center>
+
+                        </form>
 
 
 

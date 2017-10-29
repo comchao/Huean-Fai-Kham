@@ -140,13 +140,41 @@ include '../testhd/hder.php';
                                     <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
                                     <input id="name" type="hidden" class="form-control" name="type" value="0">
 
-                                    <button type="submit" class="btn btn-danger" style="width: 130px">
-                                        ยกเลิกการสั่ง
-                                    </button>
+                                        <?php
+
+                                        $id_report;
+                                        $sql = "SELECT* FROM report WHERE id_report = $id_report ";
+                                        $res = mysqli_query($dbcon,$sql);
+                                        while ($row = mysqli_fetch_assoc($res)){
+                                            if($row["status"]=="0"&$row["status"]!="1"&$row["status"]!="3"){
+
+                                            ?>
+
+                                            <button type="submit" class="btn btn-danger" style="width: 130px" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?');" >
+                                                ยกเลิกการสั่ง
+                                            </button>
+                                            <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
+                                                พิมพ์ใบเสร็จ
+                                            </button>
+                                    </form>
+
+
+
+                                    <?php   }else{ ?>
+
+                                    <form class="uk-form" action="user_order.php?login_id=<?php echo  $login_id;?>&id_report=<?php echo  $id_report;?>" method="post">
+                                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
+                                        <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
+
                                         <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
-                                            พิมพ์ใบเสร็จ
+                                            ย้อนกลับ
                                         </button>
                                     </form>
+
+                                   <?php } }?>
+
+
+
 
 
                                 </div>
