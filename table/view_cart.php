@@ -7,6 +7,7 @@ if(!isset($_SESSION))
 
 $id_user  = $_POST['login_id'];
 $id_report  = $_GET['id_report'];
+$type  = $_GET['type'];
 include_once("config.php");
 require '../connectdb.php';
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
@@ -18,6 +19,8 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 
 <link href="style/style.css" rel="stylesheet" type="text/css"></head>
 <body>
+
+<?php echo $type ?>
 <h1 align="center">รายการสั่งอาหาร</h1>
 
 
@@ -95,14 +98,15 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 
     <input id="login_id" type="hidden" class="form-control" name="login_id[]" value="<?php echo $id_user?>">
     <input id="id_report" type="hidden" class="form-control" name="id_report[]" value="<?php echo $id_report?>">
+            <input id="total" type="hidden" class="form-control" name="type" value="<?php echo $type ?>"
 
-            <input id="login_id" type="hidden" class="form-control" name="login_ids" value="<?php echo $id_user?>">
-            <input id="id_report" type="hidden" class="form-control" name="id_reports" value="<?php echo $id_report?>">
             <?php
 
 			$subtotal = ($product_price * $product_qty); //calculate Price x Qty ?>
 
             <input id="total" type="hidden" class="form-control" name="total[]" value="<?php echo $subtotal ?>"
+
+
 
 
             <?php

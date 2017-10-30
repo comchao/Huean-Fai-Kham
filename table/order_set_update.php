@@ -15,26 +15,69 @@ $type  = $_POST['type'];
 $tb_id  = $_POST['tb_id'];
 
 
+//จองโต๊ะ
+if($_POST['type'] == "0"){
 
-
-
-$sql = "UPDATE report SET 	status = '2' 
+    $sql = "UPDATE report SET 	status = '2' 
 WHERE id_report = $id_report";
-$results = mysqli_query($dbcon,$sql);
+    $results = mysqli_query($dbcon,$sql);
 
-$sql_tbtable = "UPDATE tbtable SET tb_status = 1
-WHERE tb_id = '$tb_id'";
-$results_tbtable = mysqli_query($dbcon,$sql_tbtable);
-
-
+    $sql_tbtable = "UPDATE tbtable SET tb_status = '1'
+WHERE tb_id = $tb_id";
+    $results_tbtable = mysqli_query($dbcon,$sql_tbtable);
 
 
-if ($results&$results_tbtable) {
-    header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id");
-}else {
-    echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
+    if ($results&$results_tbtable) {
+        header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
+    }else {
+        echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
+    }
+    mysqli_close($dbcon);
+
 }
-mysqli_close($dbcon);
+
+//จองโต๊ะ+อาหาร
+if($_POST['type'] == "1"){
+
+    $sql = "UPDATE report SET 	status = '2' 
+WHERE id_report = $id_report";
+    $results = mysqli_query($dbcon,$sql);
+
+    $sql_tbtable = "UPDATE tbtable SET tb_status = '1'
+WHERE tb_id = $tb_id";
+    $results_tbtable = mysqli_query($dbcon,$sql_tbtable);
+
+
+    if ($results&$results_tbtable) {
+        header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
+    }else {
+        echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
+    }
+    mysqli_close($dbcon);
+
+}
+
+//สั่งอาหารพร้อมกลับบ้าน
+if($_POST['type'] == "2"){
+
+    $sql = "UPDATE report SET 	status = '2' 
+WHERE id_report = $id_report";
+    $results = mysqli_query($dbcon,$sql);
+
+    $sql_tbtable = "UPDATE tbtable SET tb_status = '1'
+WHERE tb_id = $tb_id";
+    $results_tbtable = mysqli_query($dbcon,$sql_tbtable);
+
+
+    if ($results&$results_tbtable) {
+        header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
+    }else {
+        echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
+    }
+    mysqli_close($dbcon);
+
+}
+
 
 
 

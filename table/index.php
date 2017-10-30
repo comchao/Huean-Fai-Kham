@@ -5,6 +5,7 @@
         $id_user   = $_SESSION['login_id'];
     }
     $id_report   = $_GET['id_report'];
+    $type  = $_GET['type'];
 
 include_once("config.php");
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
@@ -71,9 +72,10 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
     echo '</form>';
     echo '
 
- <form method="post" action="view_cart.php?login_id='.$id_user.'&id_report='.$id_report.'">
+ <form method="post" action="view_cart.php?login_id='.$id_user.'&id_report='.$id_report.'&type='.$type.'">
     <input type="hidden" name="login_id" value="'.$id_user.'" />
-     <input type="hidden" name="id_report" value="'.$id_report.'" />
+     <input type="hidden" name="id_report" value="'.$id_report.'" />  
+        <input type="hidden" name="type" value="'.$type.'" />  
 
     <button type="submit">สั่งอาหาร</button>
     </form>

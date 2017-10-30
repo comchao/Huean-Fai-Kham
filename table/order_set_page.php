@@ -16,7 +16,7 @@ require '../connectdb.php';
 //หน้าจองแต่โต๊ะ
 if($type== '0'){
 
-    header("Location: user_order_tabel.php?id_report=$id_report&login_id=$login_id");
+    header("Location: user_order_tabel.php?id_report=$id_report&login_id=$login_id&type=$type");
 }
 //หน้าจองแต่โต๊ะ+อาหาร
 if($type== '1'){
@@ -28,7 +28,7 @@ if($type== '1'){
 //อาหารกลับบ้าน
 if($type== '2'){
 
-    header("Location: user_order_home.php?id_report=$id_report&login_id=$login_id");
+    header("Location: user_order_home.php?id_report=$id_report&login_id=$login_id&type=$type");
 }
 
 

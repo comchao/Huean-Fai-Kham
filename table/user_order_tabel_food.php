@@ -155,7 +155,7 @@ include '../testhd/hder.php';
                                 </thead>
                                 <tbody>
 
-                                <input id="tb_id" type="hidden" class="form-control" name="tb_id">
+
                                 <?php
 
 

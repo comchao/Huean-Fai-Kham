@@ -117,7 +117,7 @@ if($_POST['type'] == '2') {
         $_SESSION['login_id']   = $_POST['login_id'];
         $_SESSION['id_report']   = $_POST['id_report'];
 
-        header("Location: index.php?login_id=$login_id&id_report=$id_report");
+        header("Location: index.php?login_id=$login_id&id_report=$id_report&type=$type");
     } else {
         echo "เกิดข้อผิดพลาด" . mysqli_error($dbcon);
     }
