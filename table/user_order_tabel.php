@@ -8,6 +8,8 @@ $result_login = mysqli_query($dbcon,$sql);
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 $login_id  = $_GET['login_id'];
 $id_report  = $_GET['id_report'];
+$type  = $_GET['type'];
+
 ?>
 
 <!DOCTYPE HTML>
@@ -101,7 +103,7 @@ include '../testhd/hder.php';
                         JOIN report ON booktb.id_report = report.id_report
                         WHERE  booktb.login_id = $login_id 
                         AND  booktb.id_report = $id_report
-                        AND  report.type =  '0'";
+                        AND  report.type = '$type'";
                                                 $res = mysqli_query($dbcon,$sql);
 
                                                 while ($row = mysqli_fetch_assoc($res))

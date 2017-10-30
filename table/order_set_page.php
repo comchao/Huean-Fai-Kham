@@ -4,14 +4,18 @@ if(!isset($_SESSION))
     session_start();
 
 }
+include_once("config.php");
+require '../connectdb.php';
+
 $login_id  = $_GET['login_id'];
 $id_report  = $_GET['id_report'];
 
 $type  = $_GET['type'];
 
+echo '<br/> $login_id' . $login_id;
+echo '<br/> $id_report' . $id_report;
+echo '<br/> $type' . $type;
 
-include_once("config.php");
-require '../connectdb.php';
 
 //หน้าจองแต่โต๊ะ
 if($type== '0'){

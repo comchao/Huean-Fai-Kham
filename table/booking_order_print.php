@@ -3,12 +3,12 @@
 require '../connectdb.php';
 
 
-$login_id = $_POST['login_id'];
-$id_report = $_POST['id_report'];
-$type = $_POST['type'];
+$login_id = $_POST['login_ids'];
+$id_report = $_POST['id_reports'];
+$type = $_POST['types'];
 
 
-if ($_POST['type' ]=='1'){
+if ($_POST['types']=='1'){
 
     for($i=0;$i<count($_POST['product_code']);$i++){
         echo '<br/> product_code'  . $_POST['product_code'][$i];
@@ -29,7 +29,7 @@ VALUES('".$_POST['product_code'][$i]."','".$_POST["total"][$i]."','".$_POST["pro
         $results = mysqli_query($dbcon, $query);
     }
     if ($results) {
-        header("Location: order_set_page.php?login_id=$login_id&id_report=$id_report&type=1");
+        header("Location: order_set_page.php?login_id=$login_id&id_report=$id_report&type=$type");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
     }
@@ -37,7 +37,7 @@ VALUES('".$_POST['product_code'][$i]."','".$_POST["total"][$i]."','".$_POST["pro
 
 }
 
-if ($_POST['type']=='2'){
+if ($_POST['types']== '2'){
 
     for($i=0;$i<count($_POST['product_code']);$i++){
         echo '<br/> product_code'  . $_POST['product_code'][$i];
@@ -58,7 +58,7 @@ VALUES('".$_POST['product_code'][$i]."','".$_POST["total"][$i]."','".$_POST["pro
         $results = mysqli_query($dbcon, $query);
     }
     if ($results) {
-        header("Location: order_set_page.php?login_id=$login_id&id_report=$id_report&type=2");
+        header("Location: order_set_page.php?login_id=$login_id&id_report=$id_report&type=$type");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
     }

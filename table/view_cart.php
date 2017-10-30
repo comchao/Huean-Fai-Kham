@@ -20,57 +20,11 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 <link href="style/style.css" rel="stylesheet" type="text/css"></head>
 <body>
 
-<?php echo $type ?>
 <h1 align="center">รายการสั่งอาหาร</h1>
 
 
-<?php //echo $id_user; ?>
 <div class="cart-view-table-back">
     <form class="uk-form" action="booking_order_print.php" method="post">
-<!--    <form class="uk-form" action="booking_order_print.php" method="post">-->
-<!--        -->
-<!--      -->
-
-<!--    --><?php
-//    $sql = "SELECT * FROM booktb  INNER JOIN tblogin ON booktb.login_id = booktb.login_id
-//                                  INNER JOIN tbtable ON booktb.id_table = tbtable.tb_id
-//                                  INNER JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
-//                                  INNER JOIN booktb ON report.id_report = booktb.id_report
-//                                  GROUP BY booktb.zone_id
-//                                  ";
-//    $res = mysqli_query($dbcon,$sql);
-//    while ($row = mysqli_fetch_assoc($res)) {
-//        if ($id_user == $row['login_id']&$row['id_status']!='0') { ?>
-<!---->
-<!--      <center>-->
-<!---->
-<!--          คุณ: --><?php //echo $row['login_firstname']; ?><!--  --><?php //echo $row['login_lastname']; ?><!-- <br>-->
-<!--          ที่อยู่: --><?php //echo $row['login_address']; ?><!-- <br>-->
-<!--          อีเมล์: --><?php //echo $row['login_email']; ?>
-<!--          --><?php //echo $row['login_phone']; ?><!--<br>-->
-<!--          วันที่จอง: --><?php //echo $row['tb_date']; ?>
-<!--          เวลา: --><?php //echo $row['tb_time']; ?>
-<!--          เวลาที่จอง: --><?php //echo $row['update_time']; ?><!--<br>-->
-<!--          โต๊ะ: --><?php //echo $row['tb_numchair']; ?><!--    โซน: --><?php //echo $row['zone_name']; ?><!--<br>-->
-<!---->
-<!--          <input id="tb_date" type="hidden" class="form-control" name="tb_date[]" value="--><?php //echo $row['tb_date'];?><!--">-->
-<!--          <input id="tb_time" type="hidden" class="form-control" name="tb_time[]" value="--><?php //echo $row['tb_time']; ?><!--">-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--      </center>-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--        --><?php // }
-//    }
-//
-//    ?>
-
 
 
 
@@ -98,7 +52,10 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 
     <input id="login_id" type="hidden" class="form-control" name="login_id[]" value="<?php echo $id_user?>">
     <input id="id_report" type="hidden" class="form-control" name="id_report[]" value="<?php echo $id_report?>">
-            <input id="total" type="hidden" class="form-control" name="type" value="<?php echo $type ?>"
+
+            <input id="login_id" type="hidden" class="form-control" name="login_ids" value="<?php echo $id_user?>">
+            <input id="id_report" type="hidden" class="form-control" name="id_reports" value="<?php echo $id_report?>">
+     <input id="total" type="hidden" class="form-control" name="types" value="<?php echo $type ?>">
 
             <?php
 

@@ -78,8 +78,6 @@ include '../testhd/hder.php';
 ?>
 
 <body class="homepage">
-<?php //echo $login_id; ?><!--<br>-->
-<?php //echo $id_report; ?><!--<br>-->
 <div id="page-wrapper">
     <br>
 
@@ -93,18 +91,13 @@ include '../testhd/hder.php';
                         <?php
 
 
-
-
-
-                        $sql = "SELECT * FROM booktb 
-                        JOIN tbtable ON booktb.id_table = tbtable.tb_id
-                        JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
-                        JOIN tblogin ON booktb.login_id = tblogin.login_id
-                        JOIN report ON booktb.id_report = report.id_report
-                        WHERE  booktb.login_id = $login_id 
-                        AND  booktb.id_report = $id_report
+                        $sql = "SELECT * FROM report 
+                        JOIN orders ON report.id_report = orders.id_report
+                        JOIN tblogin ON report.login_id = tblogin.login_id
+                        WHERE  report.login_id = $login_id 
+                        AND  report.id_report = $id_report
                         AND  report.type =  '2'
-                         GROUP BY booktb.zone_id 
+                         GROUP BY report.login_id
                         ";
                         $res = mysqli_query($dbcon,$sql);
                         $i=0 ;
@@ -112,7 +105,6 @@ include '../testhd/hder.php';
 
                         while ($row = mysqli_fetch_assoc($res))
                         {
-                        if ($login_id == $row['login_id']&$row['id_status']!='1') {
                         ?>
 
 
@@ -125,13 +117,9 @@ include '../testhd/hder.php';
                             ที่อยู่: <?php echo $row['login_address']; ?> <br>
                             อีเมล์: <?php echo $row['login_email']; ?>
                             <?php echo $row['login_phone']; ?><br>
-                            เวลาที่สั่ง: <?php echo $row['update_time']; ?><br>
+                            เวลาที่สั่ง: <?php echo $row['date']; ?><br>
                             <?php
-                            $i++;
-
-                            }}
-
-
+                            $i++;}
 
                             ?>
 
@@ -148,8 +136,6 @@ include '../testhd/hder.php';
                                 </tr>
                                 </thead>
                                 <tbody>
-
-                                <input id="tb_id" type="hidden" class="form-control" name="tb_id">
                                 <?php
 
 
@@ -180,23 +166,7 @@ FROM orders INNER
                                         <td><?php echo $row["product_pid"];?></td>
                                         <td><?php echo $row["orders_tb_num"];?></td>
                                         <td><?php echo $row["SUM_orders_tb_total"];?></td>
-                                        <!--                                    <td>--><?php //echo $row_zonetable["tb_number"];?><!-- ตัว</td>-->
-                                        <!--                                    <td  align="">--><?php //echo $row_zonetable["zone_name"];?><!--</td>-->
 
-                                        <!--                                    --><?php
-                                        //                                    if($row_zonetable["tb_status"]=="0"){ ?>
-                                        <!--                                        <td style="color: lightcoral" align="">ไม่ว่าง</td>-->
-                                        <!--                                    --><?php //}
-                                        //                                    else{
-                                        $tb_total= $row["product_pid"]*$row["orders_tb_num"]; ?>
-
-
-                                        //
-                                        //                                        ?>
-                                        <!--                                        <td style="color: lightgreen" align="">ว่าง</td>-->
-                                        <!--                                        --><?php
-                                        //                                    } $i++
-                                        //                                    ?>
 
                                     </tr>
 
@@ -205,11 +175,7 @@ FROM orders INNER
                                     <?php
                                     $i++;
 
-                                }
-
-
-
-                                ?>
+                                }?>
                                 <td</td>
 
 
@@ -230,9 +196,7 @@ FROM orders INNER
                                             $sql2 = "SELECT SUM(tb_total) as Total FROM orders 
                             
                             WHERE  orders.login_id =  $s_login_id  
-                            AND orders.id_report =  $id_report
-                            
-                            ";
+                            AND orders.id_report =  $id_report";
 
                                             $res2 = mysqli_query($dbcon,$sql2);
 
@@ -268,8 +232,9 @@ FROM orders INNER
                                                 <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
                                                 <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
                                                 <input id="name" type="hidden" class="form-control" name="type" value="2">
+                                                <input id="name" type="hidden" class="form-control" name="tb_id" value="0">
 
-                                                <button type="submit" class="btn btn-danger" style="width: 130px">
+                                                <button type="submit" class="btn btn-danger" style="width: 130px" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?');" >
                                                     ยกเลิกการสั่ง
                                                 </button>
                                                 <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">

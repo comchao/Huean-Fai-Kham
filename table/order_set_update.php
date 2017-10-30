@@ -60,16 +60,16 @@ WHERE tb_id = $tb_id";
 //สั่งอาหารพร้อมกลับบ้าน
 if($_POST['type'] == "2"){
 
-    $sql = "UPDATE report SET 	status = '2' 
+    echo $login_id.'<br>';
+    echo $id_report.'<br>';
+    echo $type.'<br>';
+    echo $tb_id.'<br>';
+
+
+    $sql = "UPDATE report SET 	status = '2'
 WHERE id_report = $id_report";
     $results = mysqli_query($dbcon,$sql);
-
-    $sql_tbtable = "UPDATE tbtable SET tb_status = '1'
-WHERE tb_id = $tb_id";
-    $results_tbtable = mysqli_query($dbcon,$sql_tbtable);
-
-
-    if ($results&$results_tbtable) {
+    if ($results) {
         header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
