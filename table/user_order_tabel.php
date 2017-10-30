@@ -111,6 +111,7 @@ include '../testhd/hder.php';
                                                 if ($login_id == $row['login_id']&$row['id_status']!='1') {
                                                     ?>
                         <input id="tb_id" type="hidden" class="form-control" name="tb_id" value="<?php echo$row['id_table'];?>"?>
+                        <input id="tb_id" type="hidden" class="form-control" name="zone_id" value="<?php echo$row['zone_id'];?>"?>
 
 
 

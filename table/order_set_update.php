@@ -13,6 +13,7 @@ $id_report  = $_POST['id_report'];
 
 $type  = $_POST['type'];
 $tb_id  = $_POST['tb_id'];
+$zone_id = $_POST['zone_id'];
 
 
 //จองโต๊ะ
@@ -26,8 +27,12 @@ WHERE id_report = $id_report";
 WHERE tb_id = $tb_id";
     $results_tbtable = mysqli_query($dbcon,$sql_tbtable);
 
+    // update  tbzonetable to db
+    $query_tbzonetable = "UPDATE tbzonetable SET zone_status='1' WHERE zone_id=$zone_id";
+    $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
-    if ($results&$results_tbtable) {
+
+    if ($results&$results_tbtable&$results_tbtable&$result_tbzonetable) {
         header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
@@ -47,8 +52,12 @@ WHERE id_report = $id_report";
 WHERE tb_id = $tb_id";
     $results_tbtable = mysqli_query($dbcon,$sql_tbtable);
 
+    // update  tbzonetable to db
+    $query_tbzonetable = "UPDATE tbzonetable SET zone_status='1' WHERE zone_id=$zone_id";
+    $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
-    if ($results&$results_tbtable) {
+
+    if ($results&$results_tbtable&$results_tbtable&$result_tbzonetable) {
         header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);

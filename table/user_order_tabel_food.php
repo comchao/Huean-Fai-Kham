@@ -121,7 +121,10 @@ include '../testhd/hder.php';
 
 
                         <center>
+
                             <input id="name" type="hidden" class="form-control" name="tb_id" value=" <?php echo $row['tb_id']; ?>"?>
+                            <input id="tb_id" type="hidden" class="form-control" name="zone_id" value="<?php echo$row['zone_id'];?>"?>
+
                             คุณ: <?php echo $row['login_firstname']; ?>  <?php echo $row['login_lastname']; ?> <br>
                             ที่อยู่: <?php echo $row['login_address']; ?> <br>
                             อีเมล์: <?php echo $row['login_email']; ?>
@@ -265,7 +268,7 @@ include '../testhd/hder.php';
                                             </button>
                                             <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
                                                 พิมพ์ใบเสร็จ
-                                            </button>
+                                            </button> <br><br><br>
 
 
 
@@ -275,8 +278,20 @@ include '../testhd/hder.php';
                             </center>
 
                     </form>
+                    <center>
+                    <form class="uk-form" action="reservations_in.php" method="post">
+                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $_GET["login_id"]?>"? >
+                        <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo $_GET["id_report"]?>"?>
+                        <center><button type="submit" class="btn btn-group" style="width: 130px ">
+                                ย้อนกลับ
+                            </button></center>
+                    </form>
 
-                    </div>
+
+
+
+
+                </div>
 
 
                 </div>

@@ -93,7 +93,7 @@ if($_POST['type'] == '1') {
     $result_tbtable = mysqli_query($dbcon,$query_tbtable);
 
     // update  tbzonetable to db
-    $query_tbzonetable = "UPDATE tbzonetable SET zone_status='0' WHERE zone_id=$zone_id";
+    $query_tbzonetable = "UPDATE tbzonetable SET zone_status = '0' WHERE zone_id=$zone_id";
     $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
 
@@ -125,7 +125,7 @@ if($_POST['type'] == '2') {
     $query_report = "INSERT INTO report(id_report,login_id,status,type)
              VALUES('$id_report','$login_id','0','$type')";
     $result_report = mysqli_query($dbcon, $query_report);
-    
+
     if ($result_report) {
 
         $_SESSION['login_id']   = $_POST['login_id'];
