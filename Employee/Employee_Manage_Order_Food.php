@@ -149,7 +149,7 @@ ORDER BY report.id_report DESC
                                             echo'จองโต๊ะ';
                                         }?>
                                         <?php if ($row["type"] == '1') {
-                                            echo'จองโตะ+อาหาร';
+                                            echo'จองโต๊ะ+อาหาร';
                                         }?>
                                         <?php if ($row["type"] == '2') {
                                             echo'สั่งกลับบ้าน';

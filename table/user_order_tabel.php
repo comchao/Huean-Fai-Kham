@@ -90,6 +90,8 @@ include '../testhd/hder.php';
                 <div class="panel panel-default">
                     <div class="panel-heading">รายการจองโต๊ะ</div>
 
+                    <form class="uk-form" action="order_set_update.php" method="post">
+
                     <div class="panel-body">
                         <?php
                         $sql = "SELECT * FROM booktb 
@@ -106,6 +108,7 @@ include '../testhd/hder.php';
                                                 {
                                                 if ($login_id == $row['login_id']&$row['id_status']!='1') {
                                                     ?>
+                        <input id="tb_id" type="hidden" class="form-control" name="tb_id" value="<?php echo$row['id_table'];?>"?>
 
 
 
@@ -135,7 +138,7 @@ include '../testhd/hder.php';
                                 <div class="">
                                     <h4>ยอดรวมรวม:  <?php echo  "0";?> บาท<br><br></h4>
 
-                                    <form class="uk-form" action="order_set_update.php" method="post">
+
                                     <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
                                     <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
                                     <input id="name" type="hidden" class="form-control" name="type" value="0">
@@ -156,6 +159,7 @@ include '../testhd/hder.php';
                                             <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
                                                 พิมพ์ใบเสร็จ
                                             </button>
+                                    <br>
                                     </form>
 <br>
                                     <form class="uk-form" action="reservations_in.php" method="post">
