@@ -223,10 +223,8 @@ include '../testhd/hder.php';
                                         $sql_zonetable = "SELECT * FROM tbzonetable";
                                         $res_zonetable = mysqli_query($dbcon,$sql_zonetable);
                                         while ($row_zonetable = mysqli_fetch_assoc($res_zonetable)) {
-                                            if ($row_zonetable['zone_id'] == $row_zonetable['zone_id']) {
+                                            if ($row_zonetable['zone_id'] == $row_zonetable['zone_id'] &$row_zonetable['zone_status'] == '1') {
                                                 echo '<option value="'.$row_zonetable['zone_id'].'" selected>'.$row_zonetable['zone_name'].'</option>';;
-                                            }else {
-                                                echo '<option value="'.$row_zonetable['zone_id'].'">'.$row_zonetable['zone_name'].'</option>';
                                             }
                                         }
                                         ?>
