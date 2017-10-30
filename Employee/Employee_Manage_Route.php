@@ -27,7 +27,7 @@ if($_GET['type'] == '1') {
 if($_GET['type'] == '2') {
 
 
-    header("Location: Employee_Manage_Order_Food_Details.php?login_id=$login_id&id_report=$id_report&status=$status&type=$type");
+    header("Location: Employee_Manage_Order_Home_Details.php?login_id=$login_id&id_report=$id_report&status=$status&type=$type");
 }
 ?>
 

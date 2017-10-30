@@ -163,6 +163,7 @@ WHERE booktb.id_report = $id_report  AND booktb.login_id = $login_id
                                                         <input id="name" type="hidden" class="form-control" name="login_id"  value="<?php echo $row['login_id']; ?>">
                                                         <input id="name" type="hidden" class="form-control" name="id_report"  value="<?php echo $row['id_report']; ?>">
                                                         <input id="name" type="hidden" class="form-control" name="tb_id" value="<?php echo $row['id_table']; ?>">
+                                                        <input id="zone_id" type="hidden" class="form-control" name="zone_id" value="<?php echo $row['zone_id']; ?>">
                                                         <input id="name" type="hidden" class="form-control" name="type" value="0">
                                                         <input id="name" type="hidden" class="form-control" name="status" value="1">
                                                         ยืนยันจองโต๊ะ
@@ -177,7 +178,8 @@ WHERE booktb.id_report = $id_report  AND booktb.login_id = $login_id
 
                                                         <input id="name" type="hidden" class="form-control" name="login_id"  value="<?php echo $row['login_id']; ?>">
                                                         <input id="name" type="hidden" class="form-control" name="id_report"  value="<?php echo $row['id_report']; ?>">
-                                                    <input id="name" type="hidden" class="form-control" name="tb_id" value="<?php echo $row['id_table']; ?>">
+                                                       <input id="name" type="hidden" class="form-control" name="tb_id" value="<?php echo $row['id_table']; ?>">
+                                                        <input id="zone_id" type="hidden" class="form-control" name="zone_id" value="<?php echo $row['zone_id']; ?>">
                                                     <input id="name" type="hidden" class="form-control" name="type" value="0">
                                                     <input id="name" type="hidden" class="form-control" name="status" value="2">
                                                         ยกเลิกการจองโต๊ะ

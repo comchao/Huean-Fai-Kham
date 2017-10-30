@@ -94,10 +94,12 @@ include '../testhd/hder.php';
 
                     <div class="panel-body">
 
+
                         <?php
 
 
-
+                        $zone_id ;
+                        $tb_id;
 
 
                         $sql = "SELECT * FROM booktb 
@@ -108,7 +110,7 @@ include '../testhd/hder.php';
                         WHERE  booktb.login_id = $login_id 
                         AND  booktb.id_report = $id_report
                         AND  report.type =  '1'
-                        GROUP BY booktb.zone_id 
+                        GROUP BY report.id_report 
                         ";
                         $res = mysqli_query($dbcon,$sql);
                         $i=0 ;
@@ -117,12 +119,16 @@ include '../testhd/hder.php';
                         while ($row = mysqli_fetch_assoc($res))
                         {
                         if ($login_id == $row['login_id']&$row['id_status']!='1') {
+
+                        $tb_id =  $row['tb_id'];
+                        $zone_id =  $row['zone_id'];
                         ?>
 
 
 
                         <center>
                             <input id="name" type="hidden" class="form-control" name="tb_id" value=" <?php echo $row['tb_id']; ?>"?>
+                            <input id="zone_id" type="hidden" class="form-control" name="zone_id" value="<?php echo $row['zone_id']; ?>">
                             คุณ: <?php echo $row['login_firstname']; ?>  <?php echo $row['login_lastname']; ?> <br>
                             ที่อยู่: <?php echo $row['login_address']; ?> <br>
                             อีเมล์: <?php echo $row['login_email']; ?>
@@ -257,27 +263,26 @@ include '../testhd/hder.php';
                                         <h4>ยอดรวมรวม:  <?php echo  $tb_total2;?> บาท<br><br></h4>
 
 
-                                        <!--                                            <button type="submit" class="btn btn-danger" style="width: 130px"onclick="myFunction()">-->
-                                        <!--                                                ยกเลิกการสั่ง-->
-                                        <!--                                            </button>-->
+
+                                        <form action="Employee_Manage_Route_Update.php" method="post">
+
+                                            <input id="name" type="hidden" class="form-control" name="login_id" value="'.$login_id.'"?>
+                                            <input id="name" type="hidden" class="form-control" name="id_report" value="'.$id_report.'"?>
+                                            <input id="name" type="hidden" class="form-control" name="status" value="1">
+                                            <input id="name" type="hidden" class="form-control" name="type" value="1">
+                                            <input id="name" type="hidden" class="form-control" name="tb_id" value="'.$tb_id.'">
 
 
-
+                                            <button type="submit" class="btn btn-group" style="width: 130px" >
+                                                <input id="name" type="hidden" class="form-control" name="zone_id" value="'.$zone_id.'"?>
+                                                ชำระเงิน
+                                            </button>
+                                        </form>
+                                        <br>
 
                                         <?php if ($status == '0'){
                                             echo '
-                                                <form action="Employee_Manage_Route_Update.php" method="post">
-
-                                                    <input id="name" type="hidden" class="form-control" name="login_id" value="'.$login_id.'"?>
-                                                    <input id="name" type="hidden" class="form-control" name="id_report" value="'.$id_report.'"?>
-                                                    <input id="name" type="hidden" class="form-control" name="status" value="1">
-                                                    <input id="name" type="hidden" class="form-control" name="type" value="1">
-                                                    <input id="name" type="hidden" class="form-control" name="tb_id" value="0">
-                                                    <button type="submit" class="btn btn-group" style="width: 130px" >
-                                                        ชำระเงิน
-                                                    </button>
-                                                </form>
-                                                <br>
+                                                
                                                 
                                                 <form action="Employee_Manage_Route_Update.php" method="post">
 
@@ -285,7 +290,8 @@ include '../testhd/hder.php';
                                                     <input id="name" type="hidden" class="form-control" name="id_report" value="'.$id_report.'"?>
                                                     <input id="name" type="hidden" class="form-control" name="status" value="2">
                                                     <input id="name" type="hidden" class="form-control" name="type" value="1">
-                                                    <input id="name" type="hidden" class="form-control" name="tb_id" value="0">
+                                                    <input id="name" type="hidden" class="form-control" name="tb_id" value="'.$tb_id.'">
+                                                        <input id="name" type="hidden" class="form-control" name="zone_id" value="'.$zone_id.'"?>
                                                     <button type="submit" class="btn btn-danger" style="width: 130px" onclick="return confirm(\'คุณต้องการลบข้อมูลหรือไม่ ?\');" >
                                                         ยกเลิก
                                                     </button>
@@ -294,17 +300,17 @@ include '../testhd/hder.php';
 
                                         }else{
 
-                                        } echo '
+                                        } ?>
+
                                                 <form action="Employee_Manage_Order_Food.php" method="post">
 
                                                     <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
                                                     <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
-                                                 
+
                                                     <button type="submit" class="btn-group" style="width: 130px" >
                                                        กลับ
                                                     </button>
                                                 </form>';
-                                        ?>
 
 
 

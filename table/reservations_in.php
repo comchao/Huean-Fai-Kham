@@ -310,12 +310,9 @@ include '../testhd/hder.php';
                             <div class="form-group">
                                 <div class="col-md-6 col-md-offset-4">
                                     <button type="submit" id="show-me" class="btn btn-primary">
-                                        ยืนยันไม่เลือกอาหาร
+                                        ยืนยัน
                                     </button>
 
-                                    <button type="submit" id="show-me" class="btn btn-primary">
-                                        ยืนยันเลือกอาหาร
-                                    </button>
                                 </div>
                             </div>
                         </form>

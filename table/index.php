@@ -72,7 +72,7 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
     }
     echo '<td colspan="4">';
     echo '
-<button type="submit">ลบรายการ</button>
+<button type="submit" onclick="return confirm(\'คุณต้องการลบข้อมูลหรือไม่ ?\');" >ลบรายการ</button>
 ';
     echo '</form>';
     echo '

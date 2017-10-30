@@ -7,6 +7,7 @@ $res_login = mysqli_query($dbcon,$sql);
 $result_login = mysqli_query($dbcon,$sql);
 $login_id  = $_GET['login_id'];
 $id_report  = $_GET['id_report'];
+$status  = $_GET['status'];
 ?>
 
 <!DOCTYPE HTML>
@@ -78,8 +79,6 @@ include '../testhd/hder.php';
 ?>
 
 <body class="homepage">
-<?php //echo $login_id; ?><!--<br>-->
-<?php //echo $id_report; ?><!--<br>-->
 <div id="page-wrapper">
     <br>
 
@@ -91,11 +90,6 @@ include '../testhd/hder.php';
 
                     <div class="panel-body">
                         <?php
-
-
-
-
-
                         $sql = "SELECT * FROM booktb INNER
 
                         JOIN tbtable ON booktb.id_table = tbtable.tb_id
@@ -115,9 +109,7 @@ include '../testhd/hder.php';
                         ?>
 
 
-
                         <center>
-
 
 
                             คุณ: <?php echo $row['login_firstname']; ?>  <?php echo $row['login_lastname']; ?> <br>
@@ -129,8 +121,6 @@ include '../testhd/hder.php';
                             $i++;
 
                             }}
-
-
 
                             ?>
 
@@ -179,23 +169,6 @@ FROM orders INNER
                                         <td><?php echo $row["product_pid"];?></td>
                                         <td><?php echo $row["orders_tb_num"];?></td>
                                         <td><?php echo $row["SUM_orders_tb_total"];?></td>
-                                        <!--                                    <td>--><?php //echo $row_zonetable["tb_number"];?><!-- ตัว</td>-->
-                                        <!--                                    <td  align="">--><?php //echo $row_zonetable["zone_name"];?><!--</td>-->
-
-                                        <!--                                    --><?php
-                                        //                                    if($row_zonetable["tb_status"]=="0"){ ?>
-                                        <!--                                        <td style="color: lightcoral" align="">ไม่ว่าง</td>-->
-                                        <!--                                    --><?php //}
-                                        //                                    else{
-                                        $tb_total= $row["product_pid"]*$row["orders_tb_num"]; ?>
-
-
-                                        //
-                                        //                                        ?>
-                                        <!--                                        <td style="color: lightgreen" align="">ว่าง</td>-->
-                                        <!--                                        --><?php
-                                        //                                    } $i++
-                                        //                                    ?>
 
                                     </tr>
 
@@ -218,87 +191,110 @@ FROM orders INNER
 
                                 </tbody>
                             </table>
-                            <form class="uk-form" action="order_set_update.php" method="post">
+
                                 <center>
                                     <div class="form-group" style="margin-left: 200px;">
                                         <div class="">
                                             <?php
 
 
+                                            $sql = "SELECT SUM(orders.tb_total) AS Total_SUM FROM orders  WHERE  orders.login_id =  $s_login_id  
+                            AND orders.id_report =  $id_report  ";
 
-                                            $sql2 = "SELECT SUM(tb_total) as Total FROM orders 
-                            
-                            WHERE  orders.login_id =  $s_login_id  
-                            AND orders.id_report =  $id_report
-                            
-                            ";
+                                            $res = mysqli_query($dbcon,$sql);
 
-                                            $res2 = mysqli_query($dbcon,$sql2);
+                                            $tb_total = 0;
 
-                                            $tb_total2 = 0;
-
-                                            while ($row2 = mysqli_fetch_assoc($res2))
+                                            while ($row = mysqli_fetch_assoc($res))
                                             {
-                                                $tb_total2= $row2["Total"];
+                                                $tb_total= $row["Total_SUM"];
                                                 ?>
-
-
-
-
-
 
                                                 <?php ?>
 
                                                 </tr>
 
-
-
                                                 <?php
 
 
                                             }
-
-
-
                                             ?>
-                                            <h4>ยอดรวมรวม:  <?php echo  $tb_total2;?> บาท<br><br></h4>
+
+                                            <h4>ยอดรวมรวม:  <?php echo  $tb_total;?> บาท<br><br></h4>
 
                                             <?php if ($status == '0'){
-                                                echo '
-                                                <form action="Employee_Manage_Route_Update.php" method="post">
+                                                   ?>
 
-                                                    <input id="name" type="hidden" class="form-control" name="login_id" value="'.$login_id.'"?>
-                                                    <input id="name" type="hidden" class="form-control" name="id_report" value="'.$id_report.'"?>
-                                                    <input id="name" type="hidden" class="form-control" name="status" value="1">
-                                                    <input id="name" type="hidden" class="form-control" name="type" value="">
-                                                    <input id="name" type="hidden" class="form-control" name="tb_id" value="0">
-                                                    <button type="submit" class="btn btn-danger" style="width: 130px" >
-                                                        ชำระเงิน
-                                                    </button>
-                                                </form>
-                                                <br>
-                                                ';
+                                                   <form action="Employee_Manage_Route_Update.php" method="post">
 
-                                            }else{
 
-                                            } echo '
-                                                <form action="Employee_Manage_Order_Food.php" method="post">
+                                                       <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
+                                                       <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
 
-                                                    <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
-                                                    <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
-                                                 
-                                                    <button type="submit" class="btn-group" style="width: 130px" >
-                                                       กลับ
-                                                    </button>
-                                                </form>';
+                                                       <input id="name" type="hidden" class="form-control" name="status" value="1">
+                                                       <input id="name" type="hidden" class="form-control" name="type" value="2">
+                                                       <input id="name" type="hidden" class="form-control" name="tb_id" value="0">
+                                                       <button type="submit" class="btn btn-group" style="width: 130px" >
+                                                           ชำระเงิน
+                                                       </button>
+                                                       <br>    <br>
+                                                   </form>
+
+                                                   <form action="Employee_Manage_Route_Update.php" method="post">
+
+
+                                                       <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
+                                                       <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
+
+                                                       <input id="name" type="hidden" class="form-control" name="status" value="2">
+                                                       <input id="name" type="hidden" class="form-control" name="type" value="2">
+                                                       <input id="name" type="hidden" class="form-control" name="tb_id" value="0">
+                                                       <button type="submit" class="btn btn-danger" style="width: 130px" >
+                                                           ยกเลิก
+                                                       </button>
+                                                   </form>
+
+                                                   <br><br>
+
+                                            <?php }else{
+                                                ?>
+
+
+                                                   <br><br>
+
+                                                   <form action="Employee_Manage_Order_Food.php" method="post">
+
+                                                       <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
+                                                       <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
+
+                                                       <button type="submit" class="btn-group" style="width: 130px" >
+                                                           กลับ
+                                                       </button>
+                                                   </form>
+
+                                              <?php
+
+                                            }
+
+
                                             ?>
+
+
+
+
+
+                                                <br>
+
+
+
+
 
 
 
                                         </div>
                                     </div>
                                 </center>
-                            </form>
+
 
 
                     </div>
@@ -310,16 +306,8 @@ FROM orders INNER
     </div>
 
 
-
-
-
-    <br>   <br>   <br>
-
-
-
-
 </div>
-</form>
+
 
 <input type="hidden" name="current_url" value="<?php
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
