@@ -5,7 +5,7 @@ if(!isset($_SESSION))
     $id_user   = $_SESSION['login_id'];
 }
 $id_report   = $_GET['id_report'];
-$type  = $_GET['type'];
+$type = $_GET['type'];
 include_once("config.php");
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 require '../connectdb.php';
@@ -16,6 +16,28 @@ require '../connectdb.php';
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link href="style/style.css" rel="stylesheet" type="text/css">
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="dist/simplePagination.css" />
+    <script src="dist/jquery.simplePagination.js"></script>
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <link rel="stylesheet" href="../testhd/css/bootstraps.css" />
+    <!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script type="text/javascript" charset="utf8" src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="dist/simplePagination.css" />
+    <script src="dist/jquery.simplePagination.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css">
+    <script type="text/javascript" charset="utf8" src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.0.3.js"></script>
+    <script type="text/javascript" src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="dist/simplePagination.css" />
+    <script src="dist/jquery.simplePagination.js"></script>
 </head>
 <body>
 
@@ -41,9 +63,9 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 //        $product_color = $cart_itm["product_color"];
         $bg_color = ($b++%2==1) ? 'odd' : 'even'; //zebra stripe
         echo '<tr class="'.$bg_color.'">';
-        echo '<td>Qty <input type="text" size="2" maxlength="2" name="product_qty['.$product_code.']" value="'.$product_qty.'" /></td>';
-        echo '<td>'.$product_name.'</td>';
-        echo '<td><input type="checkbox" name="remove_code[]" value="'.$product_code.'" /> Remove</td>';
+        echo '<td>จำนวน '.$product_qty.'<input type="hidden" size="2" maxlength="2" name="product_qty['.$product_code.']" value="'.$product_qty.'" /></td>';
+        echo '<td><h6>'.$product_name.'</h6></td>';
+        echo '<td><input type="checkbox" name="remove_code[]" value="'.$product_code.'" /> ลบ</td>';
         echo '</tr>';
         $subtotal = ($product_price * $product_qty);
         $total = ($total + $subtotal);
@@ -92,16 +114,10 @@ if($results){
 	
 	<fieldset>
 	
-	<label>
-		<span>Color</span>
-		<select name="product_color">
-		<option value="Black">Black</option>
-		<option value="Silver">Silver</option>
-		</select>
-	</label>
+	
 	
 	<label>
-		<span>Quantity</span>
+		<span>ราคา:</span>
 		<input type="text" size="2" maxlength="2" name="product_qty" value="1" />
 	</label>
 	
@@ -109,7 +125,7 @@ if($results){
 <input type="hidden" name="product_code" value="{$obj->pid}" />
 	<input type="hidden" name="type" value="add" />
 	<input type="hidden" name="return_url" value="{$current_url}" />
-	<div align="center"><button type="submit" class="add_to_cart">Add</button></div>
+	<div align="center"><button type="submit" class="btn btn-group" >เลือก</button></div>
 	</div></div>
 	</form>
 	</li>

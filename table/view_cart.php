@@ -98,7 +98,7 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
     <tr><td colspan="5"><span style="float:right;text-align: right;">
                 <br><br><br><br>
                 ยอดรวมทั้งหมด : <?php echo sprintf("%01.2f", $total);?></span></td></tr>
-    <tr><td colspan="5"><a href="index.php?id_report=<?php echo $id_report ?>" class="button">เพิ่ม</a>
+    <tr><td colspan="5"><a href="index.php?id_report=<?php echo $id_report?>&type=<?php echo $type?>" class="button">เพิ่ม</a>
         <button type="submit">ยืนยันการสั่งอาหาร</button> </td></tr>
   </tbody>
 </table>

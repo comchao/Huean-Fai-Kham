@@ -140,21 +140,16 @@ include '../testhd/hder.php';
 
 
 
-                                $sql = "  SELECT 
-product.name as  product_name ,
-product.pid as  product_pid ,
-orders.tb_num as  orders_tb_num ,
-orders.tb_total as  orders_tb_total ,SUM(orders.tb_total) AS SUM_orders_tb_total
-FROM orders INNER 
+                                $sql = "SELECT * FROM orders INNER 
                             JOIN product ON orders.pid = product.pid 
-                            WHERE  orders.login_id = $s_login_id
-                                AND orders.id_report =  $id_report
+                            WHERE  orders.login_id =  $s_login_id  
+                            AND orders.id_report =  $id_report
                             
                             ";
 
                                 $res = mysqli_query($dbcon,$sql);
                                 $i=0 ;
-                                $tb_total = 0;
+
 
                                 while ($row = mysqli_fetch_assoc($res))
                                 {
@@ -162,11 +157,17 @@ FROM orders INNER
 
                                     <tr>
                                         <td><div align=""><?php echo $i+1?></div></td>
-                                        <td><?php echo $row["product_name"];?></td>
-                                        <td><?php echo $row["product_pid"];?></td>
-                                        <td><?php echo $row["orders_tb_num"];?></td>
-                                        <td><?php echo $row["SUM_orders_tb_total"];?></td>
+                                        <td><?php echo $row["name"];?></td>
+                                        <td><?php echo $row["price"];?></td>
+                                        <td><?php echo $row["tb_num"];?></td>
+                                        <td><?php echo $row["tb_total"];?></td>
 
+
+
+
+                                        <?php
+
+                                        //                                    ?>
 
                                     </tr>
 
@@ -175,7 +176,11 @@ FROM orders INNER
                                     <?php
                                     $i++;
 
-                                }?>
+                                }
+
+
+
+                                ?>
                                 <td</td>
 
 
