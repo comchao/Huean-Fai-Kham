@@ -93,12 +93,9 @@ include '../testhd/hder.php';
                                 <th>ลำดับ</th>
                                 <th>รหัสออเดอร์</th>
                                 <th>ชื่อลูกค้า</th>
-                                <th>โต๊ะ</th>
-                                <th>จำนวนเก้าอี้</th>
                                 <th>โซน</th>
                                 <th>วัน/เดือน/ปี เวลา</th>
                                 <th>สถานะ</th>
-                                <th>รูปแบบการจอง</th>
                                 <th>ดูรายละเอียด</th>
 
 
@@ -110,12 +107,9 @@ include '../testhd/hder.php';
 
                             <input id="tb_id" type="hidden" class="form-control" name="tb_id">
                             <?php
-                            $sql = "SELECT * FROM booktb INNER
-JOIN tbtable ON booktb.id_table = tbtable.tb_id
-JOIN tbzonetable ON booktb.zone_id = tbzonetable.zone_id
-JOIN tblogin ON booktb.login_id = tblogin.login_id 
-JOIN report ON booktb.id_report = report.id_report 
-ORDER BY booktb.id_report DESC 
+                            $sql = "SELECT * FROM report INNER
+JOIN tblogin ON report.login_id = tblogin.login_id 
+ORDER BY report.id_report DESC 
 ";
                             $res = mysqli_query($dbcon,$sql);
                             $i=0 ;
@@ -129,11 +123,7 @@ ORDER BY booktb.id_report DESC
                                     <td><div align=""><?php echo $i+1?></div></td>
                                     <td><?php echo $row["id_report"];?></td>
                                     <td><?php echo $row["login_firstname"];?> <?php echo $row["login_lastname"];?></td>
-                                    <td><?php echo $row["tb_numchair"];?></td>
-
-                                    <td><?php echo $row["tb_number"];?></td>
-                                    <td><?php echo $row["zone_name"];?></td>
-                                    <td><?php echo $row["tb_date"];?>  เวลา: <?php echo $row["tb_time"];?></td>
+                                    <td><?php echo $row["date_time"];?></td>
                                     <td>
 
                                         <?php if ($row["status"] == '0') {

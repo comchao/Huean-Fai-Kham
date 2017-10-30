@@ -143,19 +143,28 @@ include '../testhd/hder.php';
                                         <?php
 
                                         $id_report;
-                                        $sql = "SELECT* FROM report WHERE id_report = $id_report ";
+                                        $sql = "SELECT *  FROM report
+JOIN tblogin ON report.login_id = tblogin.login_id 
+JOIN booktb ON report.id_report = booktb.id_report 
+WHERE booktb.id_report = $id_report  AND booktb.login_id = $login_id
+";
                                         $res = mysqli_query($dbcon,$sql);
                                         while ($row = mysqli_fetch_assoc($res)){
                                             if($row["status"]=="0"&$row["status"]!="1"&$row["status"]!="3"){
-
                                                 ?>
 
 
 
 
 
-                                                <form class="uk-form" action="" method="post">
-                                                    <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
+                                                <form class="uk-form" action="Employee_Manage_Route_Update.php"method="post">
+                                                    <button type="submit" class="btn btn-group" style="width: 130px">
+
+                                                        <input id="name" type="hidden" class="form-control" name="login_id"  value="<?php echo $row['login_id']; ?>">
+                                                        <input id="name" type="hidden" class="form-control" name="id_report"  value="<?php echo $row['id_report']; ?>">
+                                                        <input id="name" type="hidden" class="form-control" name="tb_id" value="<?php echo $row['id_table']; ?>">
+                                                        <input id="name" type="hidden" class="form-control" name="type" value="0">
+                                                        <input id="name" type="hidden" class="form-control" name="status" value="1">
                                                         ยืนยันจองโต๊ะ
                                                     </button>
                                                 </form>
@@ -163,8 +172,14 @@ include '../testhd/hder.php';
                                                 <br>
 
 
-                                                <form class="uk-form" action="" method="post">
-                                                    <button type="submit" class="btn btn-danger" style="width: 130px" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?');" >
+                                                <form class="uk-form" action="Employee_Manage_Route_Update.php"method="post">
+                                                    <button type="submit" class="btn btn-danger" style="width: 130px"  onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?');" >
+
+                                                        <input id="name" type="hidden" class="form-control" name="login_id"  value="<?php echo $row['login_id']; ?>">
+                                                        <input id="name" type="hidden" class="form-control" name="id_report"  value="<?php echo $row['id_report']; ?>">
+                                                    <input id="name" type="hidden" class="form-control" name="tb_id" value="<?php echo $row['id_table']; ?>">
+                                                    <input id="name" type="hidden" class="form-control" name="type" value="0">
+                                                    <input id="name" type="hidden" class="form-control" name="status" value="2">
                                                         ยกเลิกการจองโต๊ะ
                                                     </button>
                                                 </form>

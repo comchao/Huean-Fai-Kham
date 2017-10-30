@@ -261,6 +261,9 @@ include '../testhd/hder.php';
                                         <!--                                                ยกเลิกการสั่ง-->
                                         <!--                                            </button>-->
 
+
+
+
                                         <?php if ($status == '0'){
                                             echo '
                                                 <form action="Employee_Manage_Route_Update.php" method="post">
@@ -268,13 +271,25 @@ include '../testhd/hder.php';
                                                     <input id="name" type="hidden" class="form-control" name="login_id" value="'.$login_id.'"?>
                                                     <input id="name" type="hidden" class="form-control" name="id_report" value="'.$id_report.'"?>
                                                     <input id="name" type="hidden" class="form-control" name="status" value="1">
-                                                    <input id="name" type="hidden" class="form-control" name="type" value="2">
+                                                    <input id="name" type="hidden" class="form-control" name="type" value="1">
                                                     <input id="name" type="hidden" class="form-control" name="tb_id" value="0">
-                                                    <button type="submit" class="btn btn-danger" style="width: 130px" >
+                                                    <button type="submit" class="btn btn-group" style="width: 130px" >
                                                         ชำระเงิน
                                                     </button>
                                                 </form>
                                                 <br>
+                                                
+                                                <form action="Employee_Manage_Route_Update.php" method="post">
+
+                                                    <input id="name" type="hidden" class="form-control" name="login_id" value="'.$login_id.'"?>
+                                                    <input id="name" type="hidden" class="form-control" name="id_report" value="'.$id_report.'"?>
+                                                    <input id="name" type="hidden" class="form-control" name="status" value="2">
+                                                    <input id="name" type="hidden" class="form-control" name="type" value="1">
+                                                    <input id="name" type="hidden" class="form-control" name="tb_id" value="0">
+                                                    <button type="submit" class="btn btn-danger" style="width: 130px" onclick="return confirm(\'คุณต้องการลบข้อมูลหรือไม่ ?\');" >
+                                                        ยกเลิก
+                                                    </button>
+                                                </form><br>
                                                 ';
 
                                         }else{

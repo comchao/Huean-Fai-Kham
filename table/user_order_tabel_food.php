@@ -260,7 +260,7 @@ include '../testhd/hder.php';
                                             <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
                                             <input id="name" type="hidden" class="form-control" name="type" value="1">
 
-                                            <button type="submit" class="btn btn-danger" style="width: 130px">
+                                            <button type="submit" class="btn btn-danger" style="width: 130px" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?');">
                                                 ยกเลิกการสั่ง
                                             </button>
                                             <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
