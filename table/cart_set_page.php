@@ -50,7 +50,12 @@ if($_POST['type'] == '0') {
     $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
 
-    if ($result_booktb &$result_tbtable&$result_report&$result_tbzonetable) {
+    // update  order_status to db
+    $query_order_status = "UPDATE tblogin SET order_status='1' WHERE login_id=$login_id";
+    $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
+    if ($result_booktb &$result_tbtable&$result_report&$result_tbzonetable&$result_order_status) {
         header("Location: user_order_tabel.php?login_id=$login_id&id_report=$id_report&type=$type");
     } else {
         echo "เกิดข้อผิดพลาด" . mysqli_error($dbcon);
@@ -97,9 +102,12 @@ if($_POST['type'] == '1') {
     $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
 
+    // update  order_status to db
+    $query_order_status = "UPDATE tblogin SET order_status='1' WHERE login_id=$login_id";
+    $result_order_status = mysqli_query($dbcon,$query_order_status);
 
 
-    if ($result_booktb &$result_tbtable&$result_report&$result_tbzonetable) {
+    if ($result_booktb &$result_tbtable&$result_report&$result_tbzonetable&$result_order_status) {
 
         $_SESSION['login_id']   = $_POST['login_id'];
         $_SESSION['id_report']   = $_POST['id_report'];
@@ -126,7 +134,15 @@ if($_POST['type'] == '2') {
              VALUES('$id_report','$login_id','0','$type')";
     $result_report = mysqli_query($dbcon, $query_report);
 
-    if ($result_report) {
+
+    // update  order_status to db
+    $query_order_status = "UPDATE tblogin SET order_status='1' WHERE login_id=$login_id";
+    $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
+
+
+    if ($result_report&$result_order_status) {
 
         $_SESSION['login_id']   = $_POST['login_id'];
         $_SESSION['id_report']   = $_POST['id_report'];

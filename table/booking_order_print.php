@@ -28,7 +28,13 @@ if ($_POST['types']=='1'){
 VALUES('".$_POST['product_code'][$i]."','".$_POST["total"][$i]."','".$_POST["product_qty"][$i]."','".$_POST["login_id"][$i]."','".$_POST["id_report"][$i]."')";
         $results = mysqli_query($dbcon, $query);
     }
-    if ($results) {
+
+    $query_order_status = "UPDATE tblogin SET order_status='1' WHERE login_id=$login_id";
+    $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
+
+    if ($results&$result_order_status) {
         header("Location: order_set_page.php?login_id=$login_id&id_report=$id_report&type=$type");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
@@ -57,7 +63,13 @@ if ($_POST['types']== '2'){
 VALUES('".$_POST['product_code'][$i]."','".$_POST["total"][$i]."','".$_POST["product_qty"][$i]."','".$_POST["login_id"][$i]."','".$_POST["id_report"][$i]."')";
         $results = mysqli_query($dbcon, $query);
     }
-    if ($results) {
+
+    $query_order_status = "UPDATE tblogin SET order_status='1' WHERE login_id=$login_id";
+    $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
+
+    if ($results&$result_order_status) {
         header("Location: order_set_page.php?login_id=$login_id&id_report=$id_report&type=$type");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);

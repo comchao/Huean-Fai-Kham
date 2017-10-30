@@ -161,169 +161,179 @@ include '../testhd/hder.php';
 
         <?php } ?>
 
+    <?php
+    $sql = "SELECT * FROM tblogin WHERE login_id = $s_login_id";
+    $res = mysqli_query($dbcon,$sql);
+    while ($row = mysqli_fetch_assoc($res)){
+        if ($row["order_status"] != "1"){ ?>
 
-    <?php }?>
+             <div class="container">
+                <div class="row">
+                    <div class="col-md-8 col-md-offset-2">
+                        <div class="panel panel-default">
+                            <div class="panel-heading">จองโต๊ะ</div>
 
+                            <div class="panel-body">
 
-
-    < <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2">
-                <div class="panel panel-default">
-                    <div class="panel-heading">จองโต๊ะ</div>
-
-                    <div class="panel-body">
-
-                        <form class="uk-form" action="cart_set_page.php" method="post">
-
-
-                            <div>
-                                <label for="name" class="col-md-4 control-label">วันที่	</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="date" class="form-control" name="tb_date" value="" required >
+                                <form class="uk-form" action="cart_set_page.php" method="post">
 
 
-                                </div>
-                                <br> <br>
-                            </div>
+                                    <div>
+                                        <label for="name" class="col-md-4 control-label">วันที่	</label>
 
-                            <div class="">
-                                <label for="name" class="col-md-4 control-label">เวลา	</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="time" class="form-control" name="tb_time" value="" required >
+                                        <div class="col-md-6">
+                                            <input id="name" type="date" class="form-control" name="tb_date" value="" required >
 
 
-                                    <?php
-                                    if(isset($_SESSION['is_Member'])){
-                                        ?>
+                                        </div>
+                                        <br> <br>
+                                    </div>
+
+                                    <div class="">
+                                        <label for="name" class="col-md-4 control-label">เวลา	</label>
+
+                                        <div class="col-md-6">
+                                            <input id="name" type="time" class="form-control" name="tb_time" value="" required >
 
 
-                                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required >
+                                            <?php
+                                            if(isset($_SESSION['is_Member'])){
+                                                ?>
 
 
-                                    <?php } ?>
+                                                <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required >
 
 
-
-
-                                </div>
-                                <br> <br>
-                            </div>
+                                            <?php } ?>
 
 
 
-                            <div>
-                                <label for="name" class="col-md-4 control-label">โซนโต๊ะ		</label>
 
-                                <div class="col-md-6">
-                                    <select  class="form-control" name="zone_id">
-                                        <?php
-                                        $sql_zonetable = "SELECT * FROM tbzonetable";
-                                        $res_zonetable = mysqli_query($dbcon,$sql_zonetable);
-                                        while ($row_zonetable = mysqli_fetch_assoc($res_zonetable)) {
-                                            if ($row_zonetable['zone_id'] == $row_zonetable['zone_id'] &$row_zonetable['zone_status'] == '1') {
-                                                echo '<option value="'.$row_zonetable['zone_id'].'" selected>'.$row_zonetable['zone_name'].'</option>';;
+                                        </div>
+                                        <br> <br>
+                                    </div>
+
+
+
+                                    <div>
+                                        <label for="name" class="col-md-4 control-label">โซนโต๊ะ		</label>
+
+                                        <div class="col-md-6">
+                                            <select  class="form-control" name="zone_id">
+                                                <?php
+                                                $sql_zonetable = "SELECT * FROM tbzonetable";
+                                                $res_zonetable = mysqli_query($dbcon,$sql_zonetable);
+                                                while ($row_zonetable = mysqli_fetch_assoc($res_zonetable)) {
+                                                    if ($row_zonetable['zone_id'] == $row_zonetable['zone_id'] &$row_zonetable['zone_status'] == '1') {
+                                                        echo '<option value="'.$row_zonetable['zone_id'].'" selected>'.$row_zonetable['zone_name'].'</option>';;
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+
+                                            </select>
+
+                                            </select>
+
+
+
+
+                                        </div>
+                                        <br> <br>
+                                    </div>
+
+                                    <div class="">
+                                        <label for="name" class="col-md-4 control-label">หมายเลขโต๊ะ		</label>
+
+                                        <div class="col-md-6">
+                                            <select  class="form-control" name="id_table">
+                                                <?php
+                                                $sql_zonetable = "SELECT * FROM tbtable";
+                                                $res_zonetable = mysqli_query($dbcon,$sql_zonetable);
+                                                while ($row_zonetable = mysqli_fetch_assoc($res_zonetable)) {
+                                                    if ($row_zonetable['tb_status'] != "0") {
+                                                        echo '<option value="'.$row_zonetable['tb_id'].'" selected>'.$row_zonetable['tb_numchair'].'</option>';;
+                                                    }
+                                                }
+                                                ?>
+                                            </select>
+
+                                        </div>
+                                        <br> <br>
+                                    </div>
+
+
+
+
+
+
+                                    <div class="">
+                                        <label for="name" class="col-md-4 control-label">ไม่เลือกอาหาร	</label>
+
+                                        <div class="col-md-6">
+                                            <input id="name" type="radio" class="" name="type" value="0"  required>
+
+
+                                        </div>
+                                        <br> <br>
+                                    </div>
+
+                                    <div class="">
+                                        <label for="name" class="col-md-4 control-label">เลือกอาหาร </label>
+
+                                        <div class="col-md-6">
+                                            <input id="name" type="radio" class="" name="type" value="1" required />
+                                            <?php
+                                            $id_report;
+                                            $sql = "SELECT MAX(id_report) as Id_report FROM report";
+                                            $res = mysqli_query($dbcon,$sql);
+                                            while ($row = mysqli_fetch_assoc($res)) {
+                                                $id_report=$row["Id_report"]+1;
                                             }
-                                        }
-                                        ?>
-                                    </select>
+                                            ?>
 
-                                    </select>
+                                            <input id="name" type="hidden" class="" name="id_report" value="<?php echo $std_id="".sprintf("%09d",$id_report); ?>"  />
 
-                                    </select>
-
-
+                                        </div>
+                                        <br> <br>
+                                    </div>
 
 
-                                </div>
-                                <br> <br>
+
+
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-4">
+
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="col-md-6 col-md-offset-4">
+                                            <button type="submit" id="show-me" class="btn btn-primary">
+                                                ยืนยัน
+                                            </button>
+
+                                        </div>
+                                    </div>
+                                </form>
                             </div>
-
-                            <div class="">
-                                <label for="name" class="col-md-4 control-label">หมายเลขโต๊ะ		</label>
-
-                                <div class="col-md-6">
-                                    <select  class="form-control" name="id_table">
-                                        <?php
-                                        $sql_zonetable = "SELECT * FROM tbtable";
-                                        $res_zonetable = mysqli_query($dbcon,$sql_zonetable);
-                                        while ($row_zonetable = mysqli_fetch_assoc($res_zonetable)) {
-                                            if ($row_zonetable['tb_status'] != "0") {
-                                                echo '<option value="'.$row_zonetable['tb_id'].'" selected>'.$row_zonetable['tb_numchair'].'</option>';;
-                                            }
-                                        }
-                                        ?>
-                                    </select>
-
-                                </div>
-                                <br> <br>
-                            </div>
-
-
-
-
-
-
-                            <div class="">
-                                <label for="name" class="col-md-4 control-label">ไม่เลือกอาหาร	</label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="radio" class="" name="type" value="0"  required>
-
-
-                                </div>
-                                <br> <br>
-                            </div>
-
-                            <div class="">
-                                <label for="name" class="col-md-4 control-label">เลือกอาหาร </label>
-
-                                <div class="col-md-6">
-                                    <input id="name" type="radio" class="" name="type" value="1" required />
-                                    <?php
-                                    $id_report;
-                                    $sql = "SELECT MAX(id_report) as Id_report FROM report";
-                                    $res = mysqli_query($dbcon,$sql);
-                                    while ($row = mysqli_fetch_assoc($res)) {
-                                        $id_report=$row["Id_report"]+1;
-                                    }
-                                    ?>
-
-                                    <input id="name" type="hidden" class="" name="id_report" value="<?php echo $std_id="".sprintf("%09d",$id_report); ?>"  />
-
-                                </div>
-                                <br> <br>
-                            </div>
-
-
-
-
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-
-                                </div>
-                            </div>
-
-                            <div class="form-group">
-                                <div class="col-md-6 col-md-offset-4">
-                                    <button type="submit" id="show-me" class="btn btn-primary">
-                                        ยืนยัน
-                                    </button>
-
-                                </div>
-                            </div>
-                        </form>
+                        </div>
                     </div>
                 </div>
+
+
+
             </div>
-        </div>
+
+        <?php } else?>
+
+
+    <?php }}?>
 
 
 
-    </div>
+
     <!-- Scripts -->
     <script src="assets/js/jquery.min.js"></script>
     <script src="assets/js/jquery.dropotron.min.js"></script>

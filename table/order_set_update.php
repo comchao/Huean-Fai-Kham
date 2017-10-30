@@ -32,7 +32,15 @@ WHERE tb_id = $tb_id";
     $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
 
-    if ($results&$results_tbtable&$results_tbtable&$result_tbzonetable) {
+    // update  order_status to db
+    $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+    $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
+
+
+
+    if ($results&$results_tbtable&$results_tbtable&$result_tbzonetable&$result_order_status) {
         header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
@@ -57,7 +65,15 @@ WHERE tb_id = $tb_id";
     $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
 
-    if ($results&$results_tbtable&$results_tbtable&$result_tbzonetable) {
+    // update  order_status to db
+    $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+    $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
+
+
+
+    if ($results&$results_tbtable&$results_tbtable&$result_tbzonetable&$result_order_status) {
         header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
@@ -74,10 +90,17 @@ if($_POST['type'] == "2"){
     echo $type.'<br>';
     echo $tb_id.'<br>';
 
-
     $sql = "UPDATE report SET 	status = '2'
 WHERE id_report = $id_report";
-    $results = mysqli_query($dbcon,$sql);
+
+
+    // update  order_status to db
+    $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+    $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
+
+    $results = mysqli_query($dbcon,$sql,$result_order_status);
     if ($results) {
         header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
     }else {
