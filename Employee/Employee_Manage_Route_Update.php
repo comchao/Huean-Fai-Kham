@@ -35,6 +35,11 @@ if($_POST['type'] == '0') {
         $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
 
+        // update  order_status to db
+        $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+        $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
 
     }
     if ($_POST['status']== '2'){
@@ -50,14 +55,28 @@ if($_POST['type'] == '0') {
               
     ";
         $result_tbtable = mysqli_query($dbcon, $query_tbtable);
+        $query_tbzonetable = "UPDATE tbzonetable SET zone_status = '1' WHERE zone_id=$zone_id";
+        $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
+
+
+
+        // update  order_status to db
+        $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+        $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
+
     }
 
-    $query_tbzonetable = "UPDATE tbzonetable SET zone_status = '1' WHERE zone_id=$zone_id";
-    $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
 
 
-    if ($result_report&$result_tbtable&$result_tbzonetable) {
+
+
+
+
+
+    if ($result_report&$result_tbtable&$result_tbzonetable&$result_order_status) {
 
         header("Location: Employee_Manage_Order_Food.php?login_id=$login_id&id_report=$id_report&status=$status&type=$type");
 
@@ -102,6 +121,12 @@ if($_POST['type'] == '1') {
         $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
 
+
+        // update  order_status to db
+        $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+        $result_order_status = mysqli_query($dbcon,$query_order_status);
+
+
     }
     if($_POST['status']== '2'){
         // update  report to db
@@ -119,11 +144,15 @@ if($_POST['type'] == '1') {
         $query_tbzonetable = "UPDATE tbzonetable SET zone_status = '1' WHERE zone_id=$zone_id";
         $result_tbzonetable = mysqli_query($dbcon,$query_tbzonetable);
 
+        // update  order_status to db
+        $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+        $result_order_status = mysqli_query($dbcon,$query_order_status);
+
 
     }
 
 
-    if ($result_report&$result_tbtable&$result_tbzonetable) {
+    if ($result_report&$result_tbtable&$result_tbzonetable&$result_order_status) {
 
         header("Location: Employee_Manage_Order_Food.php?login_id=$login_id&id_report=$id_report&status=$status&type=$type");
 
@@ -145,6 +174,12 @@ if($_POST['type'] == '2') {
                      AND  login_id = $login_id
     ";
         $result_report = mysqli_query($dbcon, $query_report);
+
+
+        // update  order_status to db
+        $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+        $result_order_status = mysqli_query($dbcon,$query_order_status);
+
     }
 
     if($_POST['status']=='2'){
@@ -154,10 +189,16 @@ if($_POST['type'] == '2') {
                      AND  login_id = $login_id
     ";
         $result_report = mysqli_query($dbcon, $query_report);
+
+
+        // update  order_status to db
+        $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+        $result_order_status = mysqli_query($dbcon,$query_order_status);
+
     }
 
 
-    if ($result_report) {
+    if ($result_report&$result_order_status) {
 
         header("Location: Employee_Manage_Order_Food.php?login_id=$login_id&id_report=$id_report&status=$status&type=$type");
 

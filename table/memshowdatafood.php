@@ -288,52 +288,64 @@ include '../testhd/hder.php';
         <center><h2>สั่งอาหารกลับบ้าน</h2></center>
 
 
+        <?php
+        $sql = "SELECT * FROM tblogin WHERE login_id = $s_login_id";
+        $res = mysqli_query($dbcon,$sql);
+        while ($row = mysqli_fetch_assoc($res)){
+            if ($row["order_status"] != "1"){ ?>
 
-            <form class="uk-form" action="cart_set_page.php" method="post">
-                <div class="">
+                <form class="uk-form" action="cart_set_page.php" method="post">
+                    <div class="">
 
-                    <div class="col-md-5">
+                        <div class="col-md-5">
 
-                        <?php
+                            <?php
 
-                        $id_report;
-                        $sql = "SELECT MAX(id_report) as Id_report FROM report";
-                        $res = mysqli_query($dbcon,$sql);
-                        while ($row = mysqli_fetch_assoc($res)) {
-                            $id_report=$row["Id_report"]+1;
+                            $id_report;
+                            $sql = "SELECT MAX(id_report) as Id_report FROM report";
+                            $res = mysqli_query($dbcon,$sql);
+                            while ($row = mysqli_fetch_assoc($res)) {
+                                $id_report=$row["Id_report"]+1;
 //
-                        }
-                        ?>
+                            }
+                            ?>
 
-                        <input id="name" type="hidden" class="" name="id_report" value="<?php echo $std_id="".sprintf("%09d",$id_report); ?>"  />
-                        <input id="name" type="hidden" class="" name="type" value="2"  />
-                        <input id="login_id" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
+                            <input id="name" type="hidden" class="" name="id_report" value="<?php echo $std_id="".sprintf("%09d",$id_report); ?>"  />
+                            <input id="name" type="hidden" class="" name="type" value="2"  />
+                            <input id="login_id" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
 
+                        </div>
+                        <br> <br>
                     </div>
-                    <br> <br>
-                </div>
 
-                <center>   <button type="submit" class="btn btn-primary" style="width: 130px">
-             สั่งอาหาร
-            </button>
+                    <center>   <button type="submit" class="btn btn-primary" style="width: 130px">
+                            สั่งอาหาร
+                        </button>
 
 
-            </form>  <br> <br>
+                </form>  <br> <br>
+
+            <?php } else?>
 
                 <form class="uk-form" action="user_order.php" method="post">
-                    <input id="login_id" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
+                <input id="login_id" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>" required autofocus>
 
-                    <center>
-            <button type="submit" class="btn btn-danger"  style="width: 130px">
-                ดูรายการสั่งอาหาร
-            </button>
-                    </center>
-                    <center>
-                        <h4> *ท่านสามารถสั่งอาหารได้ครั้งละ1ออเดอร์เท่านั้น</h4>
-                    </center>
+            <center>
+                <button type="submit" class="btn btn-group"  style="width: 130px">
+                    ดูรายการสั่งอาหาร
+                </button>
+                <br> <br>
+            </center>
+            <center>
+                <div style="color: #b94a48">*ท่านสามารถสั่งอาหารได้ครั้งละ1ออเดอร์เท่านั้น</div>
+            </center>
 
 
-                </form>
+            </form>
+            <?php }?>
+
+
+
 
 
     </div>

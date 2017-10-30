@@ -154,7 +154,8 @@ include '../testhd/hder.php';
                 <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo $s_login_id; ?>"  autofocus>
                 <center>  <button type="submit" class="btn btn-group" style="width: 130px">
                         ดูรายการสั่งอาหาร
-                    </button> <br>
+                    </button> <br> <br>
+                    <div style="color: #b94a48">*ท่านสามารถสั่งอาหารได้ครั้งละ1ออเดอร์เท่านั้น</div>
 
                 </center>
             </form>
