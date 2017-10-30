@@ -264,24 +264,29 @@ include '../testhd/hder.php';
 
 
 
-                                        <form action="Employee_Manage_Route_Update.php" method="post">
 
-                                            <input id="name" type="hidden" class="form-control" name="login_id" value="'.$login_id.'"?>
-                                            <input id="name" type="hidden" class="form-control" name="id_report" value="'.$id_report.'"?>
+
+                                        <?php if ($status == '0'){
+                                            echo '
+
+<form action="Employee_Manage_Route_Update.php" method="post">
+
+                                          <input id="name" type="hidden" class="form-control" name="login_id" value="'.$login_id.'"?>
+                                                    <input id="name" type="hidden" class="form-control" name="id_report" value="'.$id_report.'"?>
                                             <input id="name" type="hidden" class="form-control" name="status" value="1">
                                             <input id="name" type="hidden" class="form-control" name="type" value="1">
-                                            <input id="name" type="hidden" class="form-control" name="tb_id" value="'.$tb_id.'">
 
+
+                                           <input id="name" type="hidden" class="form-control" name="tb_id" value="'.$tb_id.'">
+                                                        <input id="name" type="hidden" class="form-control" name="zone_id" value="'.$zone_id.'"?>
 
                                             <button type="submit" class="btn btn-group" style="width: 130px" >
-                                                <input id="name" type="hidden" class="form-control" name="zone_id" value="'.$zone_id.'"?>
+
+
                                                 ชำระเงิน
                                             </button>
                                         </form>
                                         <br>
-
-                                        <?php if ($status == '0'){
-                                            echo '
                                                 
                                                 
                                                 <form action="Employee_Manage_Route_Update.php" method="post">

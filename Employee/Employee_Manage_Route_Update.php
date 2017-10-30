@@ -75,21 +75,25 @@ if($_POST['type'] == '1') {
 
 
     if($_POST['status']== '1'){
+
         // update  report to db
+        echo $login_id;
+        echo $id_report;
+        echo $tb_id;
 
 
-//        echo $login_id;
-//
-//        echo $id_report;
-//        echo $tb_id;
-//
-        $query_report = "UPDATE report SET status='1' 
+        echo $login_id;
+
+        echo $id_report;
+        echo $tb_id;
+
+        $query_report = "UPDATE report SET status='1'
                      WHERE id_report=$id_report
                      AND  login_id = $login_id ";
         $result_report = mysqli_query($dbcon, $query_report);
 
 
-        $query_tbtable = "UPDATE tbtable SET tb_status ='1' 
+        $query_tbtable = "UPDATE tbtable SET tb_status ='1'
                      WHERE tb_id=$tb_id";
         $result_tbtable = mysqli_query($dbcon, $query_tbtable);
 
