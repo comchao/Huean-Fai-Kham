@@ -137,25 +137,20 @@ EOT;
 ?>
 <!-- Products List End -->
 
-<!--
+
 <div class="container">
     <div class="row">
         <div class="col-md-8 col-md-offset-2">
-<form class="uk-form" action="reservations_in.php" method="post">
-    <input id="name" type="hidden" class="form-control" name="login_id" value="<?php /*echo  $_GET["login_id"]*/?>"? >
-    <input id="name" type="hidden" class="form-control" name="id_report" value="<?php /*echo $_GET["id_report"]*/?>"?>
+            <form class="uk-form" action="memshowdatafood.php" method="post">
 
-    <center><button type="submit" class="btn btn-group" style="width: 130px ">
-            ย้อนกลับ
-        </button></center>
-</form>
+                <center><button type="submit" class="btn btn-group" style="width: 130px ">
+                        ย้อนกลับ
+                    </button></center>
+            </form>
         </div>
     </div>
 </div>
 <br>
-<br>-->
-
-
-</form>
+<br>
 </body>
 </html>

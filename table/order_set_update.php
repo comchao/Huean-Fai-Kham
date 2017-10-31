@@ -52,6 +52,10 @@ WHERE tb_id = $tb_id";
 //จองโต๊ะ+อาหาร
 if($_POST['type'] == "1"){
 
+
+    echo $login_id;
+
+
     $sql = "UPDATE report SET 	status = '2' 
 WHERE id_report = $id_report";
     $results = mysqli_query($dbcon,$sql);
@@ -66,7 +70,7 @@ WHERE tb_id = $tb_id";
 
 
     // update  order_status to db
-    $query_order_status = "UPDATE tblogin SET order_status='0' WHERE login_id=$login_id";
+    $query_order_status = "UPDATE tblogin SET order_status= '0' WHERE login_id=$login_id";
     $result_order_status = mysqli_query($dbcon,$query_order_status);
 
 

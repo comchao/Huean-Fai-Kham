@@ -1,6 +1,6 @@
 <?php
 
-  $dbcon = mysqli_connect('localhost','root','','hueanfaikham');
+  $dbcon = mysqli_connect('localhost','root','123456789','Hueanfaikham');
 
   if (mysqli_connect_errno()) {
      echo "ไม่สามารถติดต่อฐานข้อมูล MYSQL ได้" .mysqli_connect_error();

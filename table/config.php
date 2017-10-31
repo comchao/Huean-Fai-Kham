@@ -2,7 +2,7 @@
 $currency = '&#8377; '; //Currency Character or code
 
 $db_username = 'root';
-$db_password = '';
+$db_password = '123456789';
 $db_name = 'hueanfaikham';
 $db_host = 'localhost';
 

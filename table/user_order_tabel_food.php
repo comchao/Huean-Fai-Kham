@@ -259,13 +259,14 @@ include '../testhd/hder.php';
                                             <h4>ยอดรวมรวม:  <?php echo  $tb_total2;?> บาท<br><br></h4>
 
 
-                                            <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $login_id;?>"?>
+                                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $_GET["login_id"]?>"? >
                                             <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo  $id_report;?>"?>
                                             <input id="name" type="hidden" class="form-control" name="type" value="1">
 
                                             <button type="submit" class="btn btn-danger" style="width: 130px" onclick="return confirm('คุณต้องการลบข้อมูลหรือไม่ ?');">
                                                 ยกเลิกการสั่ง
                                             </button>
+
                                             <button type="button" class="btn btn-group" style="width: 130px" onclick="myFunction()">
                                                 พิมพ์ใบเสร็จ
                                             </button> <br><br><br>
@@ -280,7 +281,7 @@ include '../testhd/hder.php';
                     </form>
                     <center>
                     <form class="uk-form" action="reservations_in.php" method="post">
-                        <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $_GET["login_id"]?>"? >
+
                         <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo $_GET["id_report"]?>"?>
                         <center><button type="submit" class="btn btn-group" style="width: 130px ">
                                 ย้อนกลับ

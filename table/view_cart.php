@@ -1,15 +1,17 @@
 <?php
+include '../session.php';
 if(!isset($_SESSION))
 {
     session_start();
 
 }
 
-$id_user  = $_POST['login_id'];
+$id_user  = $_GET['login_id'];
 $id_report  = $_GET['id_report'];
 $type  = $_GET['type'];
 include_once("config.php");
 require '../connectdb.php';
+
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 ?>
 <!DOCTYPE html>
@@ -24,11 +26,22 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 
 
 <div class="cart-view-table-back">
-    <form class="uk-form" action="booking_order_print.php" method="post">
 
+    <form class="uk-form" action="booking_order_print.php?login_id=<?php echo $id_user?>" method="post">
 
+<?php if ($type == '2'){ ?>
+    <center>  <h3> วันเวลาที่ต้องการจัดส่ง </h3>
+ <input id="name" type="datetime-local" class="form-control" name="set_date_time" value="" required ></center>
+<?php } ?>
 
-<table width="100%"  cellpadding="6" cellspacing="0"><thead><tr><th>ลำดับ</th><th>ชื่ออาหาร</th><th>จำนวนออเดอร์</th><th>ราคา</th><th>รวม</th></tr></thead>
+    <?php if ($type == '1'){ ?>
+
+            <input id="name" type="hidden" class="form-control" name="set_date_time" value="-" required ></center>
+    <?php } ?>
+
+<table width="100%"  cellpadding="6" cellspacing="0">
+
+    <thead><tr><th>ลำดับ</th><th>ชื่ออาหาร</th><th>จำนวนออเดอร์</th><th>ราคา</th><th>รวม</th></tr></thead>
   <tbody>
 
  	<?php
@@ -46,6 +59,7 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
             $product_qty = $cart_itm["product_qty"];
 			$product_price = $cart_itm["product_price"];
 			$product_code = $cart_itm["product_code"]; ?>
+
 
             <input id="product_code" type="hidden" class="form-control" name="product_code[]" value="<?php echo $product_code ?>">
             <input id="product_qty" type="hidden" class="form-control" name="product_qty[]" value="<?php echo  $product_qty = $cart_itm["product_qty"];?>">
@@ -106,6 +120,20 @@ $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 echo $current_url; ?>" />
 </form>
+</div>
+
+ <br><br>
+<div class="container">
+    <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+            <form class="uk-form" action="memshowdatafood.php" method="post">
+
+                <center><button type="submit" class="btn btn-group" style="width: 130px ">
+                         ยกเลิก
+                    </button></center>
+            </form>
+        </div>
+    </div>
 </div>
 
 </body>

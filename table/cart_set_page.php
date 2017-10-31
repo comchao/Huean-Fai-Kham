@@ -129,29 +129,16 @@ if($_POST['type'] == '2') {
 
 
 
-    // insert  report to db
-    $query_report = "INSERT INTO report(id_report,login_id,status,type)
-             VALUES('$id_report','$login_id','0','$type')";
-    $result_report = mysqli_query($dbcon, $query_report);
 
-
-    // update  order_status to db
-    $query_order_status = "UPDATE tblogin SET order_status='1' WHERE login_id=$login_id";
-    $result_order_status = mysqli_query($dbcon,$query_order_status);
-
-
-
-
-    if ($result_report&$result_order_status) {
+    if ( $_POST['login_id']) {
 
         $_SESSION['login_id']   = $_POST['login_id'];
-        $_SESSION['id_report']   = $_POST['id_report'];
 
-        header("Location: index.php?login_id=$login_id&id_report=$id_report&type=$type");
+        header("Location: index2.php?login_id=$login_id&id_report=$id_report&type=$type");
     } else {
-        echo "เกิดข้อผิดพลาด" . mysqli_error($dbcon);
+        echo "เกิดข้อผิดพลาด";
     }
-    mysqli_close($dbcon);
+
 
 }
 
