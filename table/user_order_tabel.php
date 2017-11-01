@@ -104,7 +104,8 @@ include '../testhd/hder.php';
                         WHERE  booktb.login_id = $login_id 
                         AND  booktb.id_report = $id_report
                         AND  report.type = '$type'
-                            GROUP  BY booktb.id_report
+                        
+                        GROUP  BY  report.id_report
                         
                         
                         ";
