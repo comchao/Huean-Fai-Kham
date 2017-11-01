@@ -103,7 +103,11 @@ include '../testhd/hder.php';
                         JOIN report ON booktb.id_report = report.id_report
                         WHERE  booktb.login_id = $login_id 
                         AND  booktb.id_report = $id_report
-                        AND  report.type = '$type'";
+                        AND  report.type = '$type'
+                            GROUP  BY booktb.id_report
+                        
+                        
+                        ";
                                                 $res = mysqli_query($dbcon,$sql);
 
                                                 while ($row = mysqli_fetch_assoc($res))
