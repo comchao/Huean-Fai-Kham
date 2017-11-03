@@ -9,7 +9,6 @@ require '../connectdb.php';
 
 $login_id  = $_GET['login_id'];
 $id_report  = $_GET['id_report'];
-
 $type  = $_GET['type'];
 
 echo '<br/> $login_id' . $login_id;

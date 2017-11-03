@@ -7,11 +7,6 @@ $result_login = mysqli_query($dbcon,$sql);
 ?>
 
 <!DOCTYPE HTML>
-<!--
-  Verti by HTML5 UP
-  html5up.net | @ajlkn
-  Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 <head>
     <title>เฮือนฝ้ายคำ</title>
@@ -143,7 +138,7 @@ include '../testhd/hder.php';
             </div>
         </div>
     </div>
-
+   <!-- //รายการข้อมูลโต๊ะที่ว่างหรือไม่ว่าง-->
     <?php
     $sql = "SELECT MAX(id_report),report.status FROM report WHERE status = '0' AND login_id = $s_login_id";
     $res = mysqli_query($dbcon,$sql);
@@ -161,7 +156,10 @@ include '../testhd/hder.php';
             </form>
 
         <?php } ?>
+        <!-- //สุดรายการข้อมูลโต๊ะที่ว่างหรือไม่ว่าง-->
 
+
+      <!--  //จองโต๊ะกับอาหาร-->
     <?php
     $sql = "SELECT * FROM tblogin WHERE login_id = $s_login_id";
     $res = mysqli_query($dbcon,$sql);
@@ -328,7 +326,7 @@ include '../testhd/hder.php';
             </div>
 
         <?php } else?>
-
+            <!--  //สุดจองโต๊ะกับอาหาร-->
 
     <?php }}?>
 

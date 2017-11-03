@@ -1,18 +1,44 @@
+
+
 <?php
 if(!isset($_SESSION))
 {
     session_start();
     $id_user   = $_SESSION['login_id'];
 }
-$id_report   = $_GET['id_report'];
+//หมายเลขโต๊ะ
+$id_table = $_GET['id_table'];
+//วันที่
+$tb_date = $_GET['tb_date'];
+//เวลา
+$tb_time = $_GET['tb_time'];
+//โซนโต๊ะ
+$zone_id = $_GET['zone_id'];
+// id เผู้ใช้งาน
+$login_id = $_GET['login_id'];
+//รหัสรายงาน
+$id_report = $_GET['id_report'];
+//ประเภทการสั่งอาการ
 $type = $_GET['type'];
 include_once("config.php");
 $current_url = urlencode($url="http://".$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI']);
 require '../connectdb.php';
+
+
+ini_set('display_errors', 1);
+error_reporting(~0);
+
+$category_id = "";
+
+if(isset($_POST["category_id"]))
+{
+    $category_id = $_POST["category_id"];
+}
 ?>
 <!DOCTYPE html>
 <html>
 <head>
+    <title>สั่งอาหาร</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 
     <link href="style/style.css" rel="stylesheet" type="text/css">
@@ -41,9 +67,36 @@ require '../connectdb.php';
 </head>
 <body>
 
-<h1 align="center"> </h1>
 
-<!-- View Cart Box Start -->
+
+                       <!--ค้นหาอาหารตามหมวดหมู่-->
+<center>
+    <h3>ค้นหาอาหารตามหมวดหมู่</h3>
+    <form class="uk-form" action="index.php?login_id=<?php echo$login_id?>&id_report=<?php echo $id_report?>&type=<?php echo $type?>&zone_id=<?php echo $zone_id?>&id_table=<?php echo $id_table?>&tb_date=<?php echo $tb_date?>&tb_time=<?php echo $tb_time?>" method="post">
+        <select name="category_id" class="form-control" style="width: 200px;">
+            <option value="menu" > -- ดูอาหารตามหมวดหมู่ -- </option>
+            <?php
+            $sql_category = "SELECT * FROM category ";
+            $res_category = mysqli_query($dbcon,$sql_category);
+            while ($row_category = mysqli_fetch_assoc($res_category))
+            {
+                echo '<option value="'.$row_category['category_id'].'">'.$row_category['category_name'].'</option>';
+            }
+            ?>
+        </select>
+        <br>
+        <input type="submit" class="btn btn-group" value="ค้นหา">
+    </form>
+</center>
+
+
+                       <!--สิ้นสุดค้นหาอาหารตามหมวดหมู่-->
+
+
+
+
+                       <!-- ตะกร้าอาหารที่เลือก จะโชว์เมื่อเลือก -->
+<h1 align="center"> </h1>
 <?php
 if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 {
@@ -76,7 +129,7 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 ';
     echo '</form>';
     echo '
- <form method="post" action="view_cart.php?login_id='.$id_user.'&id_report='.$id_report.'&type='.$type.'">
+ <form method="post" action="view_cart.php?login_id='.$login_id.'&id_report='.$id_report.'&type='.$type.'&zone_id='.$zone_id.'&id_table='.$id_table.'&tb_date='.$tb_date.'&tb_time='.$tb_time.'");
     <input type="hidden" name="login_id" value="'.$id_user.'" />
      <input type="hidden" name="id_report" value="'.$id_report.'" />  
         <input type="hidden" name="type" value="'.$type.'" />  
@@ -92,13 +145,17 @@ if(isset($_SESSION["cart_products"]) && count($_SESSION["cart_products"])>0)
 }
 ?>
 
-<!-- View Cart Box End -->
-
-
-<!-- Products List Start -->
 <?php
-$results = $mysqli->query("SELECT * FROM product ORDER BY pid ASC");
-if($results){
+
+if ($category_id == null ){
+$results = $mysqli->query("SELECT * FROM product 
+                        JOIN category ON category.category_id = product.category_id
+                        
+                        WHERE category.category_id  = $category_id
+                    
+                        
+                        GROUP  BY  product.name");
+if($results != ""){
     $products_item = '<ul class="products">';
 //fetch results set as object and output HTML
     while($obj = $results->fetch_object())
@@ -117,7 +174,7 @@ if($results){
 	
 	
 	<label>
-		<span>ราคา:</span>
+		<span>จำนวน :</span>
 		<input type="text" size="2" maxlength="2" name="product_qty" value="1" />
 	</label>
 	
@@ -133,29 +190,153 @@ EOT;
     }
     $products_item .= '</ul>';
     echo $products_item;
+} else {
+    $results = $mysqli->query("SELECT * FROM product 
+                        JOIN category ON category.category_id = product.category_id
+                        GROUP  BY  product.name");
+    if($results){
+        $products_item = '<ul class="products">';
+//fetch results set as object and output HTML
+        while($obj = $results->fetch_object())
+        {
+            $products_item .= <<<EOT
+<li class="product">
+	<form method="post" action="cart_update.php">
+	<div class="product-content"><h3>{$obj->name}</h3>
+	<div class="product-thumb"><img src="../product/img/{$obj->img}"  alt="Skaret View" style="width:150px;"></div>
+	<div class="product-desc">{$obj->detail}</div>
+	<div class="product-info">
+	ราคา {$obj->price} 
+	
+	<fieldset>
+	
+	
+	
+	<label>
+		<span>จำนวน :</span>
+		<input type="text" size="2" maxlength="2" name="product_qty" value="1" />
+	</label>
+	
+	</fieldset>
+<input type="hidden" name="product_code" value="{$obj->pid}" />
+	<input type="hidden" name="type" value="add" />
+	<input type="hidden" name="return_url" value="{$current_url}" />
+	<div align="center"><button type="submit" class="btn btn-group" >เลือก</button></div>
+	</div></div>
+	</form>
+	</li>
+EOT;
+        }
+        $products_item .= '</ul>';
+        echo $products_item;
+    }
+}
+
+}
+if ($category_id != null ){
+    $results = $mysqli->query("SELECT * FROM product 
+                        JOIN category ON category.category_id = product.category_id
+                        
+                        WHERE category.category_id  = $category_id
+                    
+                        
+                        GROUP  BY  product.name");
+    if($results != ""){
+        $products_item = '<ul class="products">';
+//fetch results set as object and output HTML
+        while($obj = $results->fetch_object())
+        {
+            $products_item .= <<<EOT
+<li class="product">
+	<form method="post" action="cart_update.php">
+	<div class="product-content"><h3>{$obj->name}</h3>
+	<div class="product-thumb"><img src="../product/img/{$obj->img}"  alt="Skaret View" style="width:150px;"></div>
+	<div class="product-desc">{$obj->detail}</div>
+	<div class="product-info">
+	ราคา {$obj->price} 
+	
+	<fieldset>
+	
+	
+	
+	<label>
+		<span>จำนวน :</span>
+		<input type="text" size="2" maxlength="2" name="product_qty" value="1" />
+	</label>
+	
+	</fieldset>
+<input type="hidden" name="product_code" value="{$obj->pid}" />
+	<input type="hidden" name="type" value="add" />
+	<input type="hidden" name="return_url" value="{$current_url}" />
+	<div align="center"><button type="submit" class="btn btn-group" >เลือก</button></div>
+	</div></div>
+	</form>
+	</li>
+EOT;
+        }
+        $products_item .= '</ul>';
+        echo $products_item;
+    } else {
+        $results = $mysqli->query("SELECT * FROM product 
+                        JOIN category ON category.category_id = product.category_id
+                        GROUP  BY  product.name");
+        if($results){
+            $products_item = '<ul class="products">';
+//fetch results set as object and output HTML
+            while($obj = $results->fetch_object())
+            {
+                $products_item .= <<<EOT
+<li class="product">
+	<form method="post" action="cart_update.php">
+	<div class="product-content"><h3>{$obj->name}</h3>
+	<div class="product-thumb"><img src="../product/img/{$obj->img}"  alt="Skaret View" style="width:150px;"></div>
+	<div class="product-desc">{$obj->detail}</div>
+	<div class="product-info">
+	ราคา {$obj->price} 
+	
+	<fieldset>
+	
+	
+	
+	<label>
+		<span>จำนวน :</span>
+		<input type="text" size="2" maxlength="2" name="product_qty" value="1" />
+	</label>
+	
+	</fieldset>
+<input type="hidden" name="product_code" value="{$obj->pid}" />
+	<input type="hidden" name="type" value="add" />
+	<input type="hidden" name="return_url" value="{$current_url}" />
+	<div align="center"><button type="submit" class="btn btn-group" >เลือก</button></div>
+	</div></div>
+	</form>
+	</li>
+EOT;
+            }
+            $products_item .= '</ul>';
+            echo $products_item;
+        }
+    }
+
 }
 ?>
-<!-- Products List End -->
 
-<!--
-<div class="container">
-    <div class="row">
-        <div class="col-md-8 col-md-offset-2">
+
+                       <!-- สิิ้นสุดตะกร้าอาหารที่เลือก จะโชว์เมื่อเลือก -->
+
+<!--ย้อนกลับ-->
 <form class="uk-form" action="reservations_in.php" method="post">
-    <input id="name" type="hidden" class="form-control" name="login_id" value="<?php /*echo  $_GET["login_id"]*/?>"? >
-    <input id="name" type="hidden" class="form-control" name="id_report" value="<?php /*echo $_GET["id_report"]*/?>"?>
+    <input id="name" type="hidden" class="form-control" name="login_id" value="<?php echo  $_GET["login_id"]?>"? >
+    <input id="name" type="hidden" class="form-control" name="id_report" value="<?php echo $_GET["id_report"]?>"?>
 
     <center><button type="submit" class="btn btn-group" style="width: 130px ">
             ย้อนกลับ
         </button></center>
-</form>
-        </div>
-    </div>
-</div>
-<br>
-<br>-->
 
 
 </form>
+<!--ย้อนกลับ-->
+
+<br><br><br><br><br><br>
 </body>
 </html>

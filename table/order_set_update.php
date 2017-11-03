@@ -12,6 +12,8 @@ $login_id  = $_POST['login_id'];
 $id_report  = $_POST['id_report'];
 
 $type  = $_POST['type'];
+
+
 $tb_id  = $_POST['tb_id'];
 $zone_id = $_POST['zone_id'];
 
@@ -41,7 +43,7 @@ WHERE tb_id = $tb_id";
 
 
     if ($results&$results_tbtable&$results_tbtable&$result_tbzonetable&$result_order_status) {
-        header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id");
+        header("Location: reservations_in.php?id_report=$id_report&login_id=$login_id&tb_id=$tb_id&zone_id=$zone_id");
     }else {
         echo "เกิดข้อผิดพลาด".mysqli_error($dbcon);
     }
